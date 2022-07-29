@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Logger.h"
 
+//// FUNCTION IMPLEMENTATION
+
 void add_snake_seg(SNAKE* snake) {
 	SNAKE_SEG* iter = &snake->head;
 	while (iter->next_seg != NULL) {
@@ -34,6 +36,4 @@ void add_snake_seg(SNAKE* snake) {
 	iter->next_seg = new_seg;
 
 	snake->length++;
-
-
 }
