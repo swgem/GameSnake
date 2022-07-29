@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="AppCore.c" />
     <ClCompile Include="AppNav.c" />
+    <ClCompile Include="Snake.c" />
     <ClCompile Include="Graphics.c" />
     <ClCompile Include="Logger.c" />
     <ClCompile Include="main.c" />
@@ -138,6 +139,7 @@
     <ClInclude Include="AppNav.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
