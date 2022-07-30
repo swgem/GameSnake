@@ -1,3 +1,6 @@
+#ifndef APP_NAV_H
+#define APP_NAV_H
+
 // ENUM
 
 typedef enum {
@@ -14,3 +17,5 @@ void init_app_nav();
 APP_NAV_STATE app_get_curr_state();
 
 void app_set_next_state(APP_NAV_STATE state);
+
+#endif

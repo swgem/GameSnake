@@ -1,3 +1,6 @@
+#ifndef LOGGER_H
+#define LOGGER_H
+
 //// ENUM
 
 typedef enum {
@@ -11,3 +14,5 @@ typedef enum {
 void SYSTEM_FATAL(char* msg);
 
 void log_msg(char* msg, LOG_TYPE log_type);
+
+#endif

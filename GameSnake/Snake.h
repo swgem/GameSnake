@@ -1,3 +1,6 @@
+#ifndef SNAKE_H
+#define SNAKE_H
+
 //// ENUM
 
 typedef enum MOVEMENT_DIRECTION {
@@ -24,3 +27,5 @@ typedef struct SNAKE {
 //// EXTERNAL FUNCTION DECLARATION
 
 void add_snake_seg(SNAKE* snake);
+
+#endif
