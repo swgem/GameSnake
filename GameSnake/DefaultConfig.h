@@ -1,0 +1,26 @@
+#ifndef DEFAULT_CONFIG_H
+#define DEFAULT_CONFIG_H
+
+#include "AppNav.h"
+
+//// DISPLAY DEFINITION
+
+#define DISPLAY_FRAME_RATE 10 // Hz
+
+//// GAME DEFINITION
+
+#define GAME_MAP_SIZE_X 10 // block
+#define GAME_MAP_SIZE_Y 15 // block
+
+#define GAME_SNAKE_SPEED 2 // blocks/seg
+#define GAME_SNAKE_INITIAL_LENGTH 3
+#define GAME_SNAKE_INITIAL_POS_X 6
+#define GAME_SNAKE_INITIAL_POS_Y 8
+#define GAME_SNAKE_INITIAL_DIRECTION MOVEMENT_DIRECTION_RIGHT
+
+//// LOGGER DEFINITION
+
+#define LOGGER_FILENAME "gamesnake.log"
+#define LOGGER_MAX_FILE_SIZE 2*1024*1024 // 2MB in bytes
+
+#endif

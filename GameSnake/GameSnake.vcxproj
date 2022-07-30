@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="AppCore.h" />
     <ClInclude Include="AppNav.h" />
+    <ClInclude Include="DefaultConfig.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Snake.h" />
