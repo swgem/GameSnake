@@ -11,8 +11,8 @@ typedef enum {
 
 //// EXTERNAL FUNCTION DECLARATION
 
-void SYSTEM_FATAL(char* msg);
+void SYSTEM_FATAL(const char* msg);
 
-void log_msg(char* msg, LOG_TYPE log_type);
+void log_msg(const char* msg, LOG_TYPE log_type);
 
 #endif
