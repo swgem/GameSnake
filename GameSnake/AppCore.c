@@ -33,6 +33,8 @@ void init_allegro() {
 	al_register_event_source(g_ev_queue, al_get_display_event_source(display));
 	al_register_event_source(g_ev_queue, al_get_timer_event_source(g_main_timer));
 
+	init_graphical_resources();
+
 	al_start_timer(g_main_timer);
 }
 
@@ -79,6 +81,7 @@ void handle_event_timer() {
 	
 	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
+		draw_menu();
 		break;
 	case APP_NAV_STATE_GAME_EXEC:
 		next_state = handle_game_exec_timer();
@@ -93,7 +96,7 @@ void handle_event_timer() {
 	}
 
 	if (next_state != g_curr_nav_state) {
-		// If app is navigating to next stage, redefine navigation state params
+		// If app is navigating to next state, redefine navigation state params
 		switch (g_curr_nav_state) {
 		case APP_NAV_STATE_MENU:
 			break;

@@ -5,7 +5,11 @@
 
 //// EXTERNAL FUNCTION DECLARATION
 
+void init_graphical_resources();
+
 void set_display(ALLEGRO_DISPLAY* display);
 void destroy_display();
+
+void draw_menu();
 
 #endif

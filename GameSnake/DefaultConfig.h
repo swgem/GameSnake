@@ -7,6 +7,9 @@
 
 #define DISPLAY_FRAME_RATE 10 // Hz
 
+#define APP_BG_COLOR "#c9c72c"
+#define APP_TEXT_COLOR "#737119"
+
 //// GAME DEFINITION
 
 #define GAME_MAP_SIZE_X 10 // block
