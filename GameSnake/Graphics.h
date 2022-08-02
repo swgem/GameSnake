@@ -7,7 +7,7 @@
 
 void init_graphical_resources();
 
-void set_display(ALLEGRO_DISPLAY* display);
+const ALLEGRO_DISPLAY* get_display();
 void destroy_display();
 
 void draw_menu();

@@ -26,14 +26,12 @@ void init_allegro() {
 	if (g_main_timer == NULL) SYSTEM_FATAL("Could not initialize main timer");
 	g_ev_queue = al_create_event_queue();
 	if (g_ev_queue == NULL) SYSTEM_FATAL("Could not initialize event queue");
-	ALLEGRO_DISPLAY* display = al_create_display(640, 480);
-	(display == NULL) ? SYSTEM_FATAL("Could not create display") : set_display(display);
-
-	al_register_event_source(g_ev_queue, al_get_keyboard_event_source());
-	al_register_event_source(g_ev_queue, al_get_display_event_source(display));
-	al_register_event_source(g_ev_queue, al_get_timer_event_source(g_main_timer));
 
 	init_graphical_resources();
+
+	al_register_event_source(g_ev_queue, al_get_keyboard_event_source());
+	al_register_event_source(g_ev_queue, al_get_display_event_source(get_display()));
+	al_register_event_source(g_ev_queue, al_get_timer_event_source(g_main_timer));
 
 	al_start_timer(g_main_timer);
 }
