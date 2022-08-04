@@ -16,5 +16,6 @@ void reset_game_exec() {
 }
 
 APP_NAV_STATE handle_game_exec_timer() {
+    move_snake(&g_snake);
     return APP_NAV_STATE_GAME_EXEC;
 }

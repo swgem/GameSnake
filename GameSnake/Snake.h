@@ -15,12 +15,13 @@ typedef enum MOVEMENT_DIRECTION {
 typedef struct SNAKE_SEG {
 	int pos_x, pos_y;
 	struct SNAKE_SEG* next_seg;
-	MOVEMENT_DIRECTION direction;
 } SNAKE_SEG;
 
 typedef struct SNAKE {
 	SNAKE_SEG head;
+	MOVEMENT_DIRECTION direction;
 	int length;
+	int speed;
 } SNAKE;
 
 //// EXTERNAL FUNCTION DECLARATION
@@ -29,4 +30,5 @@ void add_snake_seg(SNAKE* snake);
 
 void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, MOVEMENT_DIRECTION direction);
 
+void move_snake(SNAKE* snake);
 #endif
