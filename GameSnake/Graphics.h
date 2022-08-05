@@ -2,6 +2,7 @@
 #define GRAPHICS_H
 
 #include "allegro5/allegro5.h"
+#include "Menu.h"
 
 //// EXTERNAL FUNCTION DECLARATION
 

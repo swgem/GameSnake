@@ -1,6 +1,7 @@
 #include "Graphics.h"
 #include "DefaultConfig.h"
 #include "Logger.h"
+#include "AppText.h"
 #include "allegro5/allegro_color.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
@@ -53,15 +54,16 @@ void draw_menu() {
 
 	// Draw title
 	al_draw_text(g_font_b72, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) - 108,
-		ALLEGRO_ALIGN_CENTRE, "SNAKE");
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_MENU_TITLE));
 
 	// Draw options
 	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) + 36,
-		ALLEGRO_ALIGN_CENTRE, "PLAY");
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_MENU_OP1));
 	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) + 36 * 2,
-		ALLEGRO_ALIGN_CENTRE, "RECORDS");
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_MENU_OP2));
 	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) + 36 * 3,
-		ALLEGRO_ALIGN_CENTRE, "SETTINGS");
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_MENU_OP3));
 	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) + 36 * 4,
-		ALLEGRO_ALIGN_CENTRE, "EXIT");
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_MENU_OP4));
+}
 }

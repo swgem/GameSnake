@@ -1,7 +1,7 @@
 #ifndef APP_NAV_H
 #define APP_NAV_H
 
-// ENUM
+//// ENUM
 
 typedef enum {
     APP_NAV_STATE_MENU = 0,
