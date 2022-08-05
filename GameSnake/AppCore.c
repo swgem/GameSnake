@@ -75,6 +75,8 @@ void game_loop() {
 			break;
 		}
 
+		if (g_curr_nav_state == APP_NAV_STATE_FINISH) finished = true;
+
 		if (finished) break;
 
 		if (redraw && al_is_event_queue_empty(g_ev_queue)) {
