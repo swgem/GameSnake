@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "AppNav.h"
 #include "Graphics.h"
+#include "Menu.h"
 #include "GameExec.h"
 
 //// INTERNAL VARIABLE
@@ -14,7 +15,10 @@ APP_NAV_STATE g_curr_nav_state = APP_NAV_STATE_MENU;
 
 //// INTERNAL FUNCTION DECLARATION
 
+void change_nav_state(APP_NAV_STATE next_state);
+
 void handle_event_timer();
+void handle_event_key_up(int keycode);
 
 //// FUNCTION IMPLEMENTATION
 
@@ -32,6 +36,8 @@ void init_allegro() {
 	al_register_event_source(g_ev_queue, al_get_keyboard_event_source());
 	al_register_event_source(g_ev_queue, al_get_display_event_source(get_display()));
 	al_register_event_source(g_ev_queue, al_get_timer_event_source(g_main_timer));
+
+	reset_menu();
 
 	al_start_timer(g_main_timer);
 }
@@ -56,7 +62,11 @@ void game_loop() {
 			redraw = true;
 			break;
 		case ALLEGRO_EVENT_KEY_DOWN:
-			//?
+			break;
+		case ALLEGRO_EVENT_KEY_CHAR:
+			break;
+		case ALLEGRO_EVENT_KEY_UP:
+			handle_event_key_up(event.keyboard.keycode);
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			finished = true;
@@ -74,8 +84,30 @@ void game_loop() {
 	}
 }
 
+void change_nav_state(APP_NAV_STATE next_state) {
+	// If app is navigating to next state, redefine navigation state params
+	switch (g_curr_nav_state) {
+	case APP_NAV_STATE_MENU:
+		reset_menu();
+		break;
+	case APP_NAV_STATE_GAME_EXEC:
+		reset_game_exec();
+		break;
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		log_msg("Invalid next navigation state!", LOG_TYPE_ERROR);
+		next_state = g_curr_nav_state; // Not allowed to change state
+		break;
+	}
+
+	g_curr_nav_state = next_state;
+}
+
 void handle_event_timer() {
-	APP_NAV_STATE next_state = 0;
+	APP_NAV_STATE next_state = g_curr_nav_state;
 	
 	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
@@ -93,24 +125,46 @@ void handle_event_timer() {
 		break;
 	}
 
-	if (next_state != g_curr_nav_state) {
-		// If app is navigating to next state, redefine navigation state params
-		switch (g_curr_nav_state) {
-		case APP_NAV_STATE_MENU:
+	if (next_state != g_curr_nav_state) change_nav_state(next_state);
+}
+
+void handle_event_key_up(int keycode) {
+	APP_NAV_STATE next_state = g_curr_nav_state;
+	
+	switch (g_curr_nav_state) {
+	case APP_NAV_STATE_MENU: {
+		MENU_USER_ACTION action = MENU_USER_ACTION_NONE;
+		switch (keycode) {
+		case ALLEGRO_KEY_UP:
+			action = MENU_USER_ACTION_UP;
 			break;
-		case APP_NAV_STATE_GAME_EXEC:
-			reset_game_exec();
+		case ALLEGRO_KEY_DOWN:
+			action = MENU_USER_ACTION_DOWN;
 			break;
-		case APP_NAV_STATE_RECORDS:
+		case ALLEGRO_KEY_ESCAPE:
+			action = MENU_USER_ACTION_DESELECT;
 			break;
-		case APP_NAV_STATE_FINISH:
+		case ALLEGRO_KEY_ENTER:
+		case ALLEGRO_KEY_PAD_ENTER:
+		case ALLEGRO_KEY_SPACE:
+			action = MENU_USER_ACTION_ENTER;
 			break;
 		default:
-			log_msg("Invalid next navigation state!", LOG_TYPE_ERROR);
-			next_state = g_curr_nav_state; // Not allowed to change state
 			break;
 		}
-
-		g_curr_nav_state = next_state;
+		next_state = handle_menu_event(action);
+		break;
 	}
+	case APP_NAV_STATE_GAME_EXEC:
+		break;
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		SYSTEM_FATAL("Invalid current navigation state!");
+		break;
+	}
+
+	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }

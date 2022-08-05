@@ -12,6 +12,7 @@
 
 #define APP_BG_COLOR "#c9c72c"
 #define APP_TEXT_COLOR "#737119"
+#define APP_TEXT_HIGHLIGHT_COLOR "#ffffff"
 
 //// GAME DEFINITION
 
