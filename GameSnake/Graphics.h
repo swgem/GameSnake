@@ -12,6 +12,7 @@ const ALLEGRO_DISPLAY* get_display();
 void destroy_display();
 
 void draw_menu();
+void draw_game_exec();
 MENU_OPTION get_option_in_click_point(int x, int y);
 
 #endif

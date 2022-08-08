@@ -117,6 +117,7 @@ void handle_event_timer() {
 		break;
 	case APP_NAV_STATE_GAME_EXEC:
 		next_state = handle_game_exec_timer();
+		draw_game_exec();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
