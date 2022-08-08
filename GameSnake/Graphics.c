@@ -2,6 +2,7 @@
 #include "DefaultConfig.h"
 #include "Logger.h"
 #include "AppText.h"
+#include "GameExec.h"
 #include "allegro5/allegro_color.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
@@ -154,6 +155,11 @@ void draw_game_exec() {
 		al_draw_line(map_x1, (map_y1 + map_block_h * (i + 1)),
 			map_x2, (map_y1 + map_block_h * (i + 1)), edge_color, map_edge_thickness);
 	}
+
+	// Draw snake head
+	const SNAKE* snake = get_snake();
+	al_draw_filled_rectangle((map_x1 + map_block_h * (snake->head.pos_x + 1)), (map_y1 + map_block_h * (snake->head.pos_y + 1)),
+		(map_x1 + map_block_h * (snake->head.pos_x + 2)), (map_y1 + map_block_h * (snake->head.pos_y + 2)), edge_color);
 }
 
 MENU_OPTION get_option_in_click_point(int x, int y) {

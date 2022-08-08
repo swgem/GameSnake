@@ -158,8 +158,27 @@ void handle_event_key_up(int keycode) {
 		next_state = handle_menu_event(action);
 		break;
 	}
-	case APP_NAV_STATE_GAME_EXEC:
+	case APP_NAV_STATE_GAME_EXEC: {
+		GAME_EXEC_USER_ACTION action = GAME_EXEC_USER_ACTION_NONE;
+		switch (keycode) {
+		case ALLEGRO_KEY_DOWN:
+			action = GAME_EXEC_USER_ACTION_DOWN;
+			break;
+		case ALLEGRO_KEY_UP:
+			action = GAME_EXEC_USER_ACTION_UP;
+			break;
+		case ALLEGRO_KEY_LEFT:
+			action = GAME_EXEC_USER_ACTION_LEFT;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+			action = GAME_EXEC_USER_ACTION_RIGHT;
+			break;
+		default:
+			break;
+		}
+		next_state = handle_game_exec_event(action);
 		break;
+	}
 	case APP_NAV_STATE_RECORDS:
 		break;
 	case APP_NAV_STATE_FINISH:
