@@ -88,7 +88,7 @@ void game_loop() {
 
 void change_nav_state(APP_NAV_STATE next_state) {
 	// If app is navigating to next state, redefine navigation state params
-	switch (g_curr_nav_state) {
+	switch (next_state) {
 	case APP_NAV_STATE_MENU:
 		reset_menu();
 		break;

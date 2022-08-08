@@ -21,14 +21,15 @@ typedef struct SNAKE {
 	SNAKE_SEG head;
 	MOVEMENT_DIRECTION direction;
 	int length;
-	int speed;
+	int speed; // blocks per frame
 } SNAKE;
 
 //// EXTERNAL FUNCTION DECLARATION
 
 void add_snake_seg(SNAKE* snake);
 
-void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, MOVEMENT_DIRECTION direction);
+void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVEMENT_DIRECTION direction);
 
 void move_snake(SNAKE* snake);
+
 #endif
