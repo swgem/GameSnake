@@ -106,7 +106,9 @@ void draw_menu() {
 
 void draw_game_exec() {
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
-	ALLEGRO_COLOR edge_color = al_color_html(APP_EDGE_COLOR);
+	ALLEGRO_COLOR map_line_color = al_color_html(APP_MAP_LINE_COLOR);
+	ALLEGRO_COLOR snake_color = al_color_html(APP_SNAKE_COLOR);
+	ALLEGRO_COLOR snake_head_color = al_color_html(APP_SNAKE_HEAD_COLOR);
 
 	int header_h = 70;
 	int map_padding = 15;
@@ -137,37 +139,44 @@ void draw_game_exec() {
 	}
 
 	// Draw background
+
 	al_clear_to_color(bg_color);
 
 	// Draw header
 
-	al_draw_line(0, header_h, DISPLAY_RESOLUTION_X, header_h, edge_color, map_edge_thickness);
+	al_draw_line(0, header_h, DISPLAY_RESOLUTION_X, header_h, map_line_color, map_edge_thickness);
 
-	// Draw map
-	
-	al_draw_rectangle(map_x1, map_y1, map_x2, map_y2, edge_color, map_edge_thickness);
+	// Draw snake
 
-	for (int i = 0; i < (GAME_MAP_SIZE_X - 1); i++) {
-		al_draw_line((map_x1 + map_block_h * (i + 1)), map_y1,
-			(map_x1 + map_block_h * (i + 1)), map_y2, edge_color, map_edge_thickness);
-	}
-	for (int i = 0; i < (GAME_MAP_SIZE_Y - 1); i++) {
-		al_draw_line(map_x1, (map_y1 + map_block_h * (i + 1)),
-			map_x2, (map_y1 + map_block_h * (i + 1)), edge_color, map_edge_thickness);
-	}
-
-	// Draw snake head
 	const SNAKE* snake = get_snake();
-	
-	SNAKE_SEG* iter = &snake->head;
+
+	al_draw_filled_rectangle((map_x1 + map_block_h * snake->head.pos_x),
+		(map_y1 + map_block_h * (snake->head.pos_y)),
+		(map_x1 + map_block_h * (snake->head.pos_x + 1)),
+		(map_y1 + map_block_h * (snake->head.pos_y + 1)), snake_head_color);
+		
+	SNAKE_SEG* iter = snake->head.next_seg;
 	while (iter != NULL) {
 		al_draw_filled_rectangle((map_x1 + map_block_h * iter->pos_x),
 			(map_y1 + map_block_h * (iter->pos_y)),
 			(map_x1 + map_block_h * (iter->pos_x + 1)),
-			(map_y1 + map_block_h * (iter->pos_y + 1)), edge_color);
+			(map_y1 + map_block_h * (iter->pos_y + 1)), snake_color);
 		iter = iter->next_seg;
 	}
 
+
+	// Draw map
+	
+	al_draw_rectangle(map_x1, map_y1, map_x2, map_y2, map_line_color, map_edge_thickness);
+
+	for (int i = 0; i < (GAME_MAP_SIZE_X - 1); i++) {
+		al_draw_line((map_x1 + map_block_h * (i + 1)), map_y1,
+			(map_x1 + map_block_h * (i + 1)), map_y2, map_line_color, map_edge_thickness);
+	}
+	for (int i = 0; i < (GAME_MAP_SIZE_Y - 1); i++) {
+		al_draw_line(map_x1, (map_y1 + map_block_h * (i + 1)),
+			map_x2, (map_y1 + map_block_h * (i + 1)), map_line_color, map_edge_thickness);
+	}
 }
 
 MENU_OPTION get_option_in_click_point(int x, int y) {
