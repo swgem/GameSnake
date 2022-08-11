@@ -1,6 +1,8 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include <stdbool.h>
+
 //// ENUM
 
 typedef enum MOVEMENT_DIRECTION {
@@ -31,5 +33,7 @@ void add_snake_seg(SNAKE* snake);
 void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVEMENT_DIRECTION direction);
 
 void move_snake(SNAKE* snake);
+
+bool check_snake_collision(SNAKE* snake);
 
 #endif

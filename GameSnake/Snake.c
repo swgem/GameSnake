@@ -128,3 +128,15 @@ void move_snake(SNAKE* snake){
 	}
 }
 
+bool check_snake_collision(SNAKE* snake) {
+	bool collided = false;
+	SNAKE_SEG* iter = snake->head.next_seg;
+	while (iter != NULL) {
+		if (iter->pos_x == snake->head.pos_x && iter->pos_y == snake->head.pos_y) {
+			collided = true;
+			break;
+		}
+		iter = iter->next_seg;
+	}
+	return collided;
+}

@@ -16,16 +16,21 @@ void reset_game_exec() {
 }
 
 APP_NAV_STATE handle_game_exec_timer() {
+    APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
     static int count = 0; // each counted time, a DISPLAY_FRAME_RATE has passed
-    if (count < DISPLAY_FRAME_RATE) {
+    
+    if (count < (DISPLAY_FRAME_RATE/2 - 1)) {
         count++;
     }
     else {
         // A full second has passed
         count = 0;
-        move_snake(&g_snake);
+        move_snake(&g_snake);        
+        if (check_snake_collision(&g_snake)) {
+            next_state = APP_NAV_STATE_MENU;
+        }
     }
-    return APP_NAV_STATE_GAME_EXEC;
+    return next_state;
 }
 
 APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
@@ -33,16 +38,24 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
 
     switch (action) {
     case GAME_EXEC_USER_ACTION_DOWN:
-        g_snake.direction = MOVEMENT_DIRECTION_DOWN;
+        if (g_snake.direction != MOVEMENT_DIRECTION_UP) {
+            g_snake.direction = MOVEMENT_DIRECTION_DOWN;
+        }
         break;
     case GAME_EXEC_USER_ACTION_UP:
-        g_snake.direction = MOVEMENT_DIRECTION_UP;
+        if (g_snake.direction != MOVEMENT_DIRECTION_DOWN) {
+            g_snake.direction = MOVEMENT_DIRECTION_UP;
+        }
         break;
     case GAME_EXEC_USER_ACTION_LEFT:
-        g_snake.direction = MOVEMENT_DIRECTION_LEFT;
+        if (g_snake.direction != MOVEMENT_DIRECTION_RIGHT) {
+            g_snake.direction = MOVEMENT_DIRECTION_LEFT;
+        }
         break;
     case GAME_EXEC_USER_ACTION_RIGHT:
-        g_snake.direction = MOVEMENT_DIRECTION_RIGHT;
+        if (g_snake.direction != MOVEMENT_DIRECTION_LEFT) {
+            g_snake.direction = MOVEMENT_DIRECTION_RIGHT;
+        }
         break;
     default:
         break;

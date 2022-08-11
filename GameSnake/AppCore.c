@@ -26,7 +26,7 @@ void init_allegro() {
 	if (!al_init()) SYSTEM_FATAL("Could not initiate allegro!");
 	if (!al_install_keyboard()) SYSTEM_FATAL("Could not install keyboard!");
 
-	g_main_timer = al_create_timer(1.0 / 10.0);
+	g_main_timer = al_create_timer(1.0 / DISPLAY_FRAME_RATE);
 	if (g_main_timer == NULL) SYSTEM_FATAL("Could not initialize main timer");
 	g_ev_queue = al_create_event_queue();
 	if (g_ev_queue == NULL) SYSTEM_FATAL("Could not initialize event queue");
