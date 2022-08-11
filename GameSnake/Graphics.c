@@ -158,8 +158,16 @@ void draw_game_exec() {
 
 	// Draw snake head
 	const SNAKE* snake = get_snake();
-	al_draw_filled_rectangle((map_x1 + map_block_h * (snake->head.pos_x + 1)), (map_y1 + map_block_h * (snake->head.pos_y + 1)),
-		(map_x1 + map_block_h * (snake->head.pos_x + 2)), (map_y1 + map_block_h * (snake->head.pos_y + 2)), edge_color);
+	
+	SNAKE_SEG* iter = &snake->head;
+	while (iter != NULL) {
+		al_draw_filled_rectangle((map_x1 + map_block_h * iter->pos_x),
+			(map_y1 + map_block_h * (iter->pos_y)),
+			(map_x1 + map_block_h * (iter->pos_x + 1)),
+			(map_y1 + map_block_h * (iter->pos_y + 1)), edge_color);
+		iter = iter->next_seg;
+	}
+
 }
 
 MENU_OPTION get_option_in_click_point(int x, int y) {

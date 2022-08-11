@@ -86,28 +86,45 @@ void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVE
 	snake->speed = speed;
 	snake->direction = direction;
 
+
+
 	// Because the head is already present, we just need to add LEN-1 segments to fill LEN
 	for (int i = 0; i < (length - 1); i++) {
 		add_snake_seg(snake);
 	}
 	
 }
+
 void move_snake(SNAKE* snake){
+	int x_new = snake->head.pos_x;
+	int y_new = snake->head.pos_y;
 	switch (snake->direction) {
 	case MOVEMENT_DIRECTION_DOWN:
-		snake->head.pos_y += snake->speed;
+		snake->head.pos_y++;
 		break;
 	case MOVEMENT_DIRECTION_UP:
-		snake->head.pos_y -= snake->speed;
+		snake->head.pos_y--;
 		break;
 	case MOVEMENT_DIRECTION_LEFT:
-		snake->head.pos_x -= snake->speed;
+		snake->head.pos_x--;
 		break;
 	case MOVEMENT_DIRECTION_RIGHT:
-		snake->head.pos_x += snake->speed;
+		snake->head.pos_x++;
 		break;
 	default:
 		log_msg("In function move_snake, direction error.", LOG_TYPE_ERROR);
 		break;
 	}
+	SNAKE_SEG* iter = &snake->head;
+	while (iter->next_seg != NULL) {
+		int x_old = iter->next_seg->pos_x;
+		int y_old = iter->next_seg->pos_y;
+		
+		iter->next_seg->pos_x = x_new;
+		iter->next_seg->pos_y = y_new;
+		x_new = x_old;
+		y_new = y_old;
+		iter = iter->next_seg;
+	}
 }
+
