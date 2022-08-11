@@ -31,7 +31,7 @@ void init_graphical_resources() {
 	g_font_r36 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 36, 0);
 	if (g_font_r36 == NULL) SYSTEM_FATAL("Could not initialize text font");
 
-	g_font_b72 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 72, 0);
+	g_font_b72 = al_load_ttf_font("res/Inconsolata-Bold.ttf", 72, 0);
 	if (g_font_b72 == NULL) SYSTEM_FATAL("Could not initialize text font");
 
 	// Creating display

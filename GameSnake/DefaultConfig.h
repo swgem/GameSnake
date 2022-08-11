@@ -17,7 +17,7 @@
 
 //// GAME DEFINITION
 
-#define GAME_MAP_SIZE_X 10 // block
+#define GAME_MAP_SIZE_X 15 // block
 #define GAME_MAP_SIZE_Y 15 // block
 
 #define GAME_SNAKE_SPEED 2 // blocks/seg
