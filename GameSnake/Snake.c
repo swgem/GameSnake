@@ -95,21 +95,29 @@ void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVE
 	
 }
 
-void move_snake(SNAKE* snake){
+void move_snake(SNAKE* snake, int x_lim, int y_lim){
 	int x_new = snake->head.pos_x;
 	int y_new = snake->head.pos_y;
 	switch (snake->direction) {
 	case MOVEMENT_DIRECTION_DOWN:
-		snake->head.pos_y++;
+		if (++snake->head.pos_y > y_lim) {
+			snake->head.pos_y = 0;
+		}
 		break;
 	case MOVEMENT_DIRECTION_UP:
-		snake->head.pos_y--;
+		if (--snake->head.pos_y < 0) {
+			snake->head.pos_y = y_lim;
+		}
 		break;
 	case MOVEMENT_DIRECTION_LEFT:
-		snake->head.pos_x--;
+		if (--snake->head.pos_x < 0) {
+			snake->head.pos_x = x_lim;
+		}
 		break;
 	case MOVEMENT_DIRECTION_RIGHT:
-		snake->head.pos_x++;
+		if (++snake->head.pos_x > x_lim) {
+			snake->head.pos_x = 0;
+		}
 		break;
 	default:
 		log_msg("In function move_snake, direction error.", LOG_TYPE_ERROR);

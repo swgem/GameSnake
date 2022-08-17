@@ -25,7 +25,7 @@ APP_NAV_STATE handle_game_exec_timer() {
     else {
         // A full second has passed
         count = 0;
-        move_snake(&g_snake);        
+        move_snake(&g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
         if (check_snake_collision(&g_snake)) {
             next_state = APP_NAV_STATE_MENU;
         }
