@@ -2,6 +2,11 @@
 #include <time.h>
 #include <stdlib.h>
 
+//// INTERNAL FUNCTION DECLARATION
+
+void change_food_position(FOOD* food, int x_lim, int y_lim);
+
+//// FUNCTION IMPLEMENTATION
 
 void change_food_position(FOOD* food, int x_lim, int y_lim){
 	srand(time(NULL));
