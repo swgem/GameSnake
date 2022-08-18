@@ -12,7 +12,7 @@ typedef struct {
 
 //// EXTERNAL FUNCTION DECLARATION
 
-bool check_collision_snake_food(SNAKE* snake, FOOD* food, SNAKE_SEG* ret_collided_seg);
+bool check_collision_snake_food(SNAKE* snake, FOOD* food);
 
 void refresh_food_position(FOOD* food, SNAKE* snake, int x_lim, int y_lim);
 

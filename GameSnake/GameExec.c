@@ -29,9 +29,18 @@ APP_NAV_STATE handle_game_exec_timer() {
         // A full second has passed
         count = 0;
         move_snake(&g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
+        
+        //Check collision with itself
         if (check_snake_collision(&g_snake)) {
             next_state = APP_NAV_STATE_MENU;
         }
+
+        //Check colision of the head with food
+        if (g_food.pos_x == g_snake.head.pos_x && g_food.pos_y == g_snake.head.pos_y) {
+            add_snake_seg(&g_snake);
+            refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
+        }
+
     }
     return next_state;
 }
