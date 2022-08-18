@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="AppCore.c" />
     <ClCompile Include="AppText.c" />
+    <ClCompile Include="Food.c" />
     <ClCompile Include="GameExec.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Snake.c" />
@@ -149,6 +150,7 @@
     <ClInclude Include="AppNav.h" />
     <ClInclude Include="AppText.h" />
     <ClInclude Include="DefaultConfig.h" />
+    <ClInclude Include="Food.h" />
     <ClInclude Include="GameExec.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Logger.h" />
