@@ -34,4 +34,6 @@ void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVE
 
 void move_snake(SNAKE* snake, int x_lim, int y_lim);
 
+bool check_snake_collision(SNAKE* snake);
+
 #endif
