@@ -109,6 +109,7 @@ void draw_game_exec() {
 	ALLEGRO_COLOR map_line_color = al_color_html(APP_MAP_LINE_COLOR);
 	ALLEGRO_COLOR snake_color = al_color_html(APP_SNAKE_COLOR);
 	ALLEGRO_COLOR snake_head_color = al_color_html(APP_SNAKE_HEAD_COLOR);
+	ALLEGRO_COLOR food_color = al_color_html(APP_FOOD_COLOR);
 
 	int header_h = 70;
 	int map_padding = 15;
@@ -164,6 +165,14 @@ void draw_game_exec() {
 		iter = iter->next_seg;
 	}
 
+	// Draw food
+
+	const FOOD* food = get_food();
+
+	al_draw_filled_rectangle((map_x1 + map_block_h * food->pos_x),
+		(map_y1 + map_block_h * (food->pos_y)),
+		(map_x1 + map_block_h * (food->pos_x + 1)),
+		(map_y1 + map_block_h * (food->pos_y + 1)), food_color);
 
 	// Draw map
 	

@@ -3,6 +3,7 @@
 
 #include "AppNav.h"
 #include "Snake.h"
+#include "Food.h"
 
 //// ENUM
 
@@ -23,5 +24,7 @@ APP_NAV_STATE handle_game_exec_timer();
 APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action);
 
 const SNAKE* get_snake();
+
+const FOOD* get_food();
 
 #endif

@@ -6,6 +6,7 @@
 //// INTERNAL VARIABLE 
 
 SNAKE g_snake = {.head = {.next_seg = NULL}, .length = 1};
+FOOD g_food;
 
 //// FUNCTION IMPLEMENTATION
 
@@ -13,6 +14,8 @@ void reset_game_exec() {
     reset_snake(&g_snake, GAME_SNAKE_INITIAL_LENGTH,
         GAME_SNAKE_INITIAL_POS_X, GAME_SNAKE_INITIAL_POS_Y,
         GAME_SNAKE_SPEED, GAME_SNAKE_INITIAL_DIRECTION);
+
+    refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
 }
 
 APP_NAV_STATE handle_game_exec_timer() {
@@ -66,4 +69,8 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
 
 const SNAKE* get_snake() {
     return &g_snake;
+}
+
+const FOOD* get_food() {
+    return &g_food;
 }

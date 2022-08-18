@@ -16,6 +16,7 @@
 #define APP_MAP_LINE_COLOR "#ffffff"
 #define APP_SNAKE_COLOR "#008000"
 #define APP_SNAKE_HEAD_COLOR "#8a2be2"
+#define APP_FOOD_COLOR "#0000ff"
 
 //// GAME DEFINITION
 
