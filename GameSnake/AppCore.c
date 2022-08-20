@@ -1,4 +1,6 @@
 #include "AppCore.h"
+#include <time.h>
+#include <stdlib.h>
 #include "DefaultConfig.h"
 #include "Logger.h"
 #include "AppNav.h"
@@ -23,6 +25,8 @@ void handle_event_key_up(int keycode);
 //// FUNCTION IMPLEMENTATION
 
 void init_allegro() {
+	srand(time(NULL));
+
 	if (!al_init()) SYSTEM_FATAL("Could not initiate allegro!");
 	if (!al_install_keyboard()) SYSTEM_FATAL("Could not install keyboard!");
 
