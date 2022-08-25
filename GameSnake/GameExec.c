@@ -5,6 +5,7 @@
 
 //// INTERNAL VARIABLE 
 
+bool can_change_direction = true;
 SNAKE g_snake = {.head = {.next_seg = NULL}, .length = 1};
 FOOD g_food;
 
@@ -40,7 +41,7 @@ APP_NAV_STATE handle_game_exec_timer() {
             add_snake_seg(&g_snake);
             refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
         }
-
+        can_change_direction = true;
     }
     return next_state;
 }
@@ -50,23 +51,27 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
 
     switch (action) {
     case GAME_EXEC_USER_ACTION_DOWN:
-        if (g_snake.direction != MOVEMENT_DIRECTION_UP) {
+        if (can_change_direction && g_snake.direction != MOVEMENT_DIRECTION_UP) {
             g_snake.direction = MOVEMENT_DIRECTION_DOWN;
+            can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_UP:
-        if (g_snake.direction != MOVEMENT_DIRECTION_DOWN) {
+        if (can_change_direction && g_snake.direction != MOVEMENT_DIRECTION_DOWN) {
             g_snake.direction = MOVEMENT_DIRECTION_UP;
+            can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_LEFT:
-        if (g_snake.direction != MOVEMENT_DIRECTION_RIGHT) {
+        if (can_change_direction && g_snake.direction != MOVEMENT_DIRECTION_RIGHT) {
             g_snake.direction = MOVEMENT_DIRECTION_LEFT;
+            can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_RIGHT:
-        if (g_snake.direction != MOVEMENT_DIRECTION_LEFT) {
+        if (can_change_direction && g_snake.direction != MOVEMENT_DIRECTION_LEFT) {
             g_snake.direction = MOVEMENT_DIRECTION_RIGHT;
+            can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP:
