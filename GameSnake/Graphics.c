@@ -7,6 +7,7 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "allegro5/allegro_primitives.h"
+#include <stdio.h>
 
 //// INTERNAL VARIABLE
 
@@ -106,6 +107,7 @@ void draw_menu() {
 
 void draw_game_exec() {
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
 	ALLEGRO_COLOR map_line_color = al_color_html(APP_MAP_LINE_COLOR);
 	ALLEGRO_COLOR snake_color = al_color_html(APP_SNAKE_COLOR);
 	ALLEGRO_COLOR snake_head_color = al_color_html(APP_SNAKE_HEAD_COLOR);
@@ -146,6 +148,10 @@ void draw_game_exec() {
 	// Draw header
 
 	al_draw_line(0, header_h, DISPLAY_RESOLUTION_X, header_h, map_line_color, map_edge_thickness);
+
+	char str_score[10];
+	sprintf_s(str_score, 10, "%d", get_score());
+	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), 0, ALLEGRO_ALIGN_CENTRE, str_score);
 
 	// Draw snake
 

@@ -29,4 +29,6 @@ const SNAKE* get_snake();
 
 const FOOD* get_food();
 
+const int get_score();
+
 #endif

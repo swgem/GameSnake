@@ -122,3 +122,7 @@ const SNAKE* get_snake() {
 const FOOD* get_food() {
     return &g_food;
 }
+
+const int get_score() {
+    return g_score;
+}
