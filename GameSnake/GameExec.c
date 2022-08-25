@@ -20,7 +20,8 @@ void refresh_score(int snake_length, int period);
 //// FUNCTION IMPLEMENTATION
 
 void refresh_score(int snake_length, int period) {
-    int add_score = (int)(((float)GAME_MAX_SCORE - (2.0f * (float)period) * (1.0f + 0.1f) * ((float)snake_length - ((float)GAME_SNAKE_INITIAL_LENGTH - 1.0f))));
+    int add_score = (int)(((float)GAME_MAX_SCORE - (2.0f * (float)period)) *
+        (1.0f + (0.1f * ((float)snake_length - ((float)GAME_SNAKE_INITIAL_LENGTH - 1.0f)))));
     if (add_score < 10) {
         add_score = 10;
     }
