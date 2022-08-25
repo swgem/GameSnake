@@ -36,6 +36,8 @@ void reset_game_exec() {
     refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
 
     g_timestamp_old = (int)time(NULL);
+
+    g_score = 0;
 }
 
 APP_NAV_STATE handle_game_exec_timer() {
