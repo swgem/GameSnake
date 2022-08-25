@@ -20,10 +20,11 @@
 
 //// GAME DEFINITION
 
-#define GAME_MAP_SIZE_X 15 // block
-#define GAME_MAP_SIZE_Y 15 // block
+#define GAME_MAP_SIZE_X 10 // block
+#define GAME_MAP_SIZE_Y 10 // block
 
 #define GAME_SNAKE_SPEED 2 // blocks/seg
+#define GAME_SNAKE_SPEED_FAST 5 // blocks/seg
 #define GAME_SNAKE_INITIAL_LENGTH 3
 #define GAME_SNAKE_INITIAL_POS_X 6
 #define GAME_SNAKE_INITIAL_POS_Y 8
