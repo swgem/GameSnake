@@ -23,6 +23,8 @@
 #define GAME_MAP_SIZE_X 10 // block
 #define GAME_MAP_SIZE_Y 10 // block
 
+#define GAME_MAX_SCORE 100 //Max score by food
+
 #define GAME_SNAKE_SPEED 2 // blocks/seg
 #define GAME_SNAKE_SPEED_FAST 5 // blocks/seg
 #define GAME_SNAKE_INITIAL_LENGTH 3
