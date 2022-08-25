@@ -21,6 +21,7 @@ void change_nav_state(APP_NAV_STATE next_state);
 
 void handle_event_timer();
 void handle_event_key_up(int keycode);
+void handle_event_key_down(int keycode);
 
 //// FUNCTION IMPLEMENTATION
 
@@ -66,6 +67,7 @@ void game_loop() {
 			redraw = true;
 			break;
 		case ALLEGRO_EVENT_KEY_DOWN:
+			handle_event_key_down(event.keyboard.keycode);
 			break;
 		case ALLEGRO_EVENT_KEY_CHAR:
 			break;
@@ -135,6 +137,7 @@ void handle_event_timer() {
 	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }
 
+
 void handle_event_key_up(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 	
@@ -176,6 +179,39 @@ void handle_event_key_up(int keycode) {
 			break;
 		case ALLEGRO_KEY_RIGHT:
 			action = GAME_EXEC_USER_ACTION_RIGHT;
+			break;
+		case ALLEGRO_KEY_SPACE:
+			action = GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP;
+			break;
+		default:
+			break;
+		}
+		next_state = handle_game_exec_event(action);
+		break;
+	}
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		SYSTEM_FATAL("Invalid current navigation state!");
+		break;
+	}
+
+	if (next_state != g_curr_nav_state) change_nav_state(next_state);
+}
+
+void handle_event_key_down(int keycode) {
+	APP_NAV_STATE next_state = g_curr_nav_state;
+	
+	switch (g_curr_nav_state) {
+	case APP_NAV_STATE_MENU:
+		break;
+	case APP_NAV_STATE_GAME_EXEC: {
+		GAME_EXEC_USER_ACTION action = GAME_EXEC_USER_ACTION_NONE;
+		switch (keycode) {
+		case ALLEGRO_KEY_SPACE:
+			action = GAME_EXEC_USER_ACTION_SPACEBAR_KEYDOWN;
 			break;
 		default:
 			break;

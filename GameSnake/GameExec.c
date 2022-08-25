@@ -22,7 +22,7 @@ APP_NAV_STATE handle_game_exec_timer() {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
     static int count = 0; // each counted time, a DISPLAY_FRAME_RATE has passed
     
-    if (count < (DISPLAY_FRAME_RATE/2 - 1)) {
+    if (count < (DISPLAY_FRAME_RATE/g_snake.speed - 1)) {
         count++;
     }
     else {
@@ -68,6 +68,12 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
         if (g_snake.direction != MOVEMENT_DIRECTION_LEFT) {
             g_snake.direction = MOVEMENT_DIRECTION_RIGHT;
         }
+        break;
+    case GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP:
+        g_snake.speed = GAME_SNAKE_SPEED;
+        break;
+    case GAME_EXEC_USER_ACTION_SPACEBAR_KEYDOWN:
+        g_snake.speed = GAME_SNAKE_SPEED_FAST;
         break;
     default:
         break;
