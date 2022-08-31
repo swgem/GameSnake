@@ -164,10 +164,16 @@ void draw_game_exec() {
 		
 	SNAKE_SEG* iter = snake->head.next_seg;
 	while (iter != NULL) {
-		al_draw_filled_rectangle((map_x1 + map_block_h * iter->pos_x),
-			(map_y1 + map_block_h * (iter->pos_y)),
-			(map_x1 + map_block_h * (iter->pos_x + 1)),
-			(map_y1 + map_block_h * (iter->pos_y + 1)), snake_color);
+		if (iter->pos_x >= 0 && iter->pos_x < GAME_MAP_SIZE_X 
+			&& iter->pos_y >= 0 && iter->pos_y < GAME_MAP_SIZE_Y) {
+			al_draw_filled_rectangle((map_x1 + map_block_h * iter->pos_x),
+				(map_y1 + map_block_h * (iter->pos_y)),
+				(map_x1 + map_block_h * (iter->pos_x + 1)),
+				(map_y1 + map_block_h * (iter->pos_y + 1)), snake_color);
+		}
+		else {
+			log_msg("Snake segment out of map.", LOG_TYPE_ERROR);
+		}
 		iter = iter->next_seg;
 	}
 
