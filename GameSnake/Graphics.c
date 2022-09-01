@@ -189,12 +189,9 @@ void draw_game_exec() {
 	// Draw food
 
 	const FOOD* food = get_food();
-
-	al_draw_filled_rectangle((map_x1 + map_block_h * food->pos_x),
-		(map_y1 + map_block_h * (food->pos_y)),
-		(map_x1 + map_block_h * (food->pos_x + 1)),
-		(map_y1 + map_block_h * (food->pos_y + 1)), food_color);
-
+	float raio = (map_block_h / 2) - (map_edge_thickness * 0.7);
+	al_draw_filled_circle ((map_x1 + (map_block_h * food->pos_x) + (map_block_h * 0.5)), (map_y1 + map_block_h * (food->pos_y) + (map_block_h * 0.5)), raio, food_color);
+	
 	// Draw map
 	
 	al_draw_rectangle(map_x1, map_y1, map_x2, map_y2, map_line_color, map_edge_thickness);
