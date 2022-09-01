@@ -4,13 +4,13 @@
 
 int main(int argc, char* argv[]) {
 	// STARTUP
-	init_allegro();
+	app_init();
 
 	// EXECUTION
-	game_loop();
+	app_loop();
 
 	// FINISH
-	finish_allegro();
+	app_finish();
 
 	return 0;
 }

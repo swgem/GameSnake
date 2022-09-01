@@ -25,7 +25,7 @@ void handle_event_key_down(int keycode);
 
 //// FUNCTION IMPLEMENTATION
 
-void init_allegro() {
+void app_init() {
 	srand(time(NULL));
 
 	if (!al_init()) SYSTEM_FATAL("Could not initiate allegro!");
@@ -47,13 +47,13 @@ void init_allegro() {
 	al_start_timer(g_main_timer);
 }
 
-void finish_allegro() {
+void app_finish() {
 	al_destroy_timer(g_main_timer);
 	al_destroy_event_queue(g_ev_queue);
 	destroy_display();
 }
 
-void game_loop() {
+void app_loop() {
 	bool redraw = false;
 	bool finished = false;
 	ALLEGRO_EVENT event;
