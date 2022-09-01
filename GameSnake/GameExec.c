@@ -44,7 +44,7 @@ APP_NAV_STATE handle_game_exec_timer() {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
     static int count = 0; // each counted time, a DISPLAY_FRAME_RATE has passed
     
-    if (count < (DISPLAY_FRAME_RATE/g_snake.speed - 1)) {
+    if (count < ((1 / APP_MAIN_TIMER_PERIOD)/g_snake.speed - 1)) {
         count++;
     }
     else {

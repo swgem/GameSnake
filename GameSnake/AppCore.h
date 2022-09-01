@@ -3,8 +3,8 @@
 
 //// EXTERNAL FUNCTION DECLARATION
 
-void init_allegro();
-void finish_allegro();
-void game_loop();
+void app_init();
+void app_finish();
+void app_loop();
 
 #endif

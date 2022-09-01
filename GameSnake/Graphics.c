@@ -15,6 +15,7 @@ static ALLEGRO_DISPLAY* g_display = NULL;
 
 ALLEGRO_FONT* g_font_r24 = NULL;
 ALLEGRO_FONT* g_font_r36 = NULL;
+ALLEGRO_FONT* g_font_r64 = NULL;
 ALLEGRO_FONT* g_font_b72 = NULL;
 
 
@@ -33,6 +34,9 @@ void init_graphical_resources() {
 
 	g_font_r36 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 36, 0);
 	if (g_font_r36 == NULL) SYSTEM_FATAL("Could not initialize text font");
+
+	g_font_r64 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 64, 0);
+	if (g_font_r64 == NULL) SYSTEM_FATAL("Could not initialize text font");
 
 	g_font_b72 = al_load_ttf_font("res/Inconsolata-Bold.ttf", 72, 0);
 	if (g_font_b72 == NULL) SYSTEM_FATAL("Could not initialize text font");
@@ -113,7 +117,7 @@ void draw_game_exec() {
 	float snake_color_v = APP_SNAKE_COLOR_V;
 
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
-	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
+	ALLEGRO_COLOR header_text_color = al_color_html(APP_HEADER_TEXT_COLOR);
 	ALLEGRO_COLOR map_line_color = al_color_html(APP_MAP_LINE_COLOR);
 	ALLEGRO_COLOR snake_color = al_color_hsv(snake_color_h,
 		snake_color_s, snake_color_v);
@@ -158,7 +162,7 @@ void draw_game_exec() {
 
 	char str_score[10];
 	sprintf_s(str_score, 10, "%d", get_score());
-	al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), 0, ALLEGRO_ALIGN_CENTRE, str_score);
+	al_draw_text(g_font_r64, header_text_color, (DISPLAY_RESOLUTION_X / 2), 0, ALLEGRO_ALIGN_CENTRE, str_score);
 
 	// Draw snake
 

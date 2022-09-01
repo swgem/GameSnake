@@ -3,16 +3,21 @@
 
 #include "AppNav.h"
 
+//// APP DEFINITION
+
+#define APP_MAIN_TIMER_PERIOD 0.025 // seg
+
 //// DISPLAY DEFINITION
 
 #define DISPLAY_RESOLUTION_X 640
 #define DISPLAY_RESOLUTION_Y 480
 
-#define DISPLAY_FRAME_RATE 30.0f // Hz
+#define DISPLAY_FRAME_RATE 10.0 // Hz
 
 #define APP_BG_COLOR "#c9c72c"
 #define APP_TEXT_COLOR "#737119"
 #define APP_TEXT_HIGHLIGHT_COLOR "#ffffff"
+#define APP_HEADER_TEXT_COLOR "#ffffff"
 #define APP_MAP_LINE_COLOR "#ffffff"
 #define APP_SNAKE_COLOR_H 120.0f
 #define APP_SNAKE_COLOR_S 1.0f
