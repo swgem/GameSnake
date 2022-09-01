@@ -17,6 +17,8 @@ ALLEGRO_FONT* g_font_r24 = NULL;
 ALLEGRO_FONT* g_font_r36 = NULL;
 ALLEGRO_FONT* g_font_b72 = NULL;
 
+
+
 //// FUNCTION IMPLEMENTATION
 
 void init_graphical_resources() {
@@ -106,10 +108,15 @@ void draw_menu() {
 }
 
 void draw_game_exec() {
+	float snake_color_h = APP_SNAKE_COLOR_H;
+	float snake_color_s = APP_SNAKE_COLOR_S;
+	float snake_color_v = APP_SNAKE_COLOR_V;
+
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
 	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
 	ALLEGRO_COLOR map_line_color = al_color_html(APP_MAP_LINE_COLOR);
-	ALLEGRO_COLOR snake_color = al_color_html(APP_SNAKE_COLOR);
+	ALLEGRO_COLOR snake_color = al_color_hsv(snake_color_h,
+		snake_color_s, snake_color_v);
 	ALLEGRO_COLOR snake_head_color = al_color_html(APP_SNAKE_HEAD_COLOR);
 	ALLEGRO_COLOR food_color = al_color_html(APP_FOOD_COLOR);
 
@@ -175,6 +182,8 @@ void draw_game_exec() {
 			log_msg("Snake segment out of map.", LOG_TYPE_ERROR);
 		}
 		iter = iter->next_seg;
+		snake_color_v += APP_SNAKE_COLOR_V_CHANGE_PACE;
+		snake_color = al_color_hsv(snake_color_h, snake_color_s, snake_color_v);
 	}
 
 	// Draw food
