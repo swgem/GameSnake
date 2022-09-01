@@ -17,6 +17,7 @@
 #define APP_BG_COLOR "#c9c72c"
 #define APP_TEXT_COLOR "#737119"
 #define APP_TEXT_HIGHLIGHT_COLOR "#ffffff"
+#define APP_HEADER_TEXT_COLOR "#ffffff"
 #define APP_MAP_LINE_COLOR "#ffffff"
 #define APP_SNAKE_COLOR "#008000"
 #define APP_SNAKE_HEAD_COLOR "#8a2be2"
