@@ -20,6 +20,7 @@ APP_NAV_STATE g_curr_nav_state = APP_NAV_STATE_MENU;
 void change_nav_state(APP_NAV_STATE next_state);
 
 void handle_event_timer();
+void handle_event_frame_rate();
 void handle_event_key_up(int keycode);
 void handle_event_key_down(int keycode);
 
@@ -31,7 +32,7 @@ void app_init() {
 	if (!al_init()) SYSTEM_FATAL("Could not initiate allegro!");
 	if (!al_install_keyboard()) SYSTEM_FATAL("Could not install keyboard!");
 
-	g_main_timer = al_create_timer(1.0 / DISPLAY_FRAME_RATE);
+	g_main_timer = al_create_timer(APP_MAIN_TIMER_PERIOD);
 	if (g_main_timer == NULL) SYSTEM_FATAL("Could not initialize main timer");
 	g_ev_queue = al_create_event_queue();
 	if (g_ev_queue == NULL) SYSTEM_FATAL("Could not initialize event queue");
@@ -56,6 +57,7 @@ void app_finish() {
 void app_loop() {
 	bool redraw = false;
 	bool finished = false;
+	int frame_rate_count = 0;
 	ALLEGRO_EVENT event;
 
 	while (1) {
@@ -64,7 +66,11 @@ void app_loop() {
 		switch (event.type) {
 		case ALLEGRO_EVENT_TIMER:
 			handle_event_timer();
-			redraw = true;
+			if (++frame_rate_count == ((1 / DISPLAY_FRAME_RATE) / APP_MAIN_TIMER_PERIOD)) {
+				handle_event_frame_rate();
+				redraw = true;
+				frame_rate_count = 0;
+			}
 			break;
 		case ALLEGRO_EVENT_KEY_DOWN:
 			handle_event_key_down(event.keyboard.keycode);
@@ -119,11 +125,9 @@ void handle_event_timer() {
 	
 	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
-		draw_menu();
 		break;
 	case APP_NAV_STATE_GAME_EXEC:
 		next_state = handle_game_exec_timer();
-		draw_game_exec();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -137,6 +141,27 @@ void handle_event_timer() {
 	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }
 
+void handle_event_frame_rate() {
+	APP_NAV_STATE next_state = g_curr_nav_state;
+
+	switch (g_curr_nav_state) {
+	case APP_NAV_STATE_MENU:
+		draw_menu();
+		break;
+	case APP_NAV_STATE_GAME_EXEC:
+		draw_game_exec();
+		break;
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		SYSTEM_FATAL("Invalid current navigation state!");
+		break;
+	}
+
+	if (next_state != g_curr_nav_state) change_nav_state(next_state);
+}
 
 void handle_event_key_up(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
