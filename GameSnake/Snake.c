@@ -4,7 +4,7 @@
 
 //// INTERNAL FUNCTION DECLARATION
 
-void destroy_segments(SNAKE_SEG* seg);
+static void destroy_segments(SNAKE_SEG* seg);
 
 //// FUNCTION IMPLEMENTATION
 
@@ -69,7 +69,7 @@ void add_snake_seg(SNAKE* snake) {
 	snake->length++;
 }
 
-void destroy_segments(SNAKE_SEG* seg) {
+static void destroy_segments(SNAKE_SEG* seg) {
 	if (seg->next_seg != NULL) {
 		destroy_segments(seg->next_seg);
 	}

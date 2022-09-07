@@ -4,11 +4,11 @@
 
 //// INTERNAL FUNCTION DECLARATION
 
-void change_food_position(FOOD* food, int x_lim, int y_lim);
+static void change_food_position(FOOD* food, int x_lim, int y_lim);
 
 //// FUNCTION IMPLEMENTATION
 
-void change_food_position(FOOD* food, int x_lim, int y_lim){
+static void change_food_position(FOOD* food, int x_lim, int y_lim){
 	int r_x = rand();
 	int r_y = rand();
 

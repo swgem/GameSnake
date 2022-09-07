@@ -3,7 +3,7 @@
 
 //// INTERNAL VARIABLE
 
-const char* g_app_text_array[] = {
+static const char* g_app_text_array[] = {
     "SNAKE",
     "PLAY",
     "RECORDS",

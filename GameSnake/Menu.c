@@ -3,13 +3,13 @@
 
 //// INTERNAL VARIABLE
 
-MENU_OPTION g_option_highlight = MENU_OPTION_NONE;
+static MENU_OPTION g_option_highlight = MENU_OPTION_NONE;
 
 //// INTERNAL FUNCTION DECLARATION
 
-void change_option_highlight(MENU_USER_ACTION action);
+static void change_option_highlight(MENU_USER_ACTION action);
 
-APP_NAV_STATE get_next_nav_state();
+static APP_NAV_STATE get_next_nav_state();
 
 //// FUNCTION IMPLEMENTATION
 
@@ -52,7 +52,7 @@ APP_NAV_STATE get_option_highlight() {
     return g_option_highlight;
 }
 
-void change_option_highlight(MENU_USER_ACTION action) {
+static void change_option_highlight(MENU_USER_ACTION action) {
     if (action == MENU_USER_ACTION_UP) {
         if ((g_option_highlight == MENU_OPTION_NONE) || (g_option_highlight == MENU_OPTION_PLAY)) {
             g_option_highlight = MENU_OPTION_EXIT;
@@ -74,7 +74,7 @@ void change_option_highlight(MENU_USER_ACTION action) {
     }
 }
 
-APP_NAV_STATE get_next_nav_state() {
+static APP_NAV_STATE get_next_nav_state() {
     APP_NAV_STATE next_state = -1;
 
     switch (g_option_highlight) {

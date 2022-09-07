@@ -10,19 +10,19 @@
 
 //// INTERNAL VARIABLE
 
-ALLEGRO_TIMER* g_main_timer = NULL;
-ALLEGRO_EVENT_QUEUE* g_ev_queue = NULL;
+static ALLEGRO_TIMER* g_main_timer = NULL;
+static ALLEGRO_EVENT_QUEUE* g_ev_queue = NULL;
 
-APP_NAV_STATE g_curr_nav_state = APP_NAV_STATE_MENU;
+static APP_NAV_STATE g_curr_nav_state = APP_NAV_STATE_MENU;
 
 //// INTERNAL FUNCTION DECLARATION
 
-void change_nav_state(APP_NAV_STATE next_state);
+static void change_nav_state(APP_NAV_STATE next_state);
 
-void handle_event_timer();
-void handle_event_frame_rate();
-void handle_event_key_up(int keycode);
-void handle_event_key_down(int keycode);
+static void handle_event_timer();
+static void handle_event_frame_rate();
+static void handle_event_key_up(int keycode);
+static void handle_event_key_down(int keycode);
 
 //// FUNCTION IMPLEMENTATION
 
@@ -98,7 +98,7 @@ void app_loop() {
 	}
 }
 
-void change_nav_state(APP_NAV_STATE next_state) {
+static void change_nav_state(APP_NAV_STATE next_state) {
 	// If app is navigating to next state, redefine navigation state params
 	switch (next_state) {
 	case APP_NAV_STATE_MENU:
@@ -120,7 +120,7 @@ void change_nav_state(APP_NAV_STATE next_state) {
 	g_curr_nav_state = next_state;
 }
 
-void handle_event_timer() {
+static void handle_event_timer() {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 	
 	switch (g_curr_nav_state) {
@@ -141,7 +141,7 @@ void handle_event_timer() {
 	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }
 
-void handle_event_frame_rate() {
+static void handle_event_frame_rate() {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 
 	switch (g_curr_nav_state) {
@@ -163,7 +163,7 @@ void handle_event_frame_rate() {
 	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }
 
-void handle_event_key_up(int keycode) {
+static void handle_event_key_up(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 	
 	switch (g_curr_nav_state) {
@@ -232,7 +232,7 @@ void handle_event_key_up(int keycode) {
 	if (next_state != g_curr_nav_state) change_nav_state(next_state);
 }
 
-void handle_event_key_down(int keycode) {
+static void handle_event_key_down(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 	
 	switch (g_curr_nav_state) {
