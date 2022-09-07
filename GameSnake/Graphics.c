@@ -18,8 +18,6 @@ ALLEGRO_FONT* g_font_r36 = NULL;
 ALLEGRO_FONT* g_font_r64 = NULL;
 ALLEGRO_FONT* g_font_b72 = NULL;
 
-
-
 //// FUNCTION IMPLEMENTATION
 
 void init_graphical_resources() {
@@ -167,6 +165,10 @@ void draw_game_exec() {
 	char str_time[10];
 	sprintf_s(str_time, sizeof(str_time), "%d", get_elapsed_time());
 	al_draw_text(g_font_r64, header_text_color, DISPLAY_RESOLUTION_X - 15, 0, ALLEGRO_ALIGN_RIGHT, str_time);
+
+	char str_length[10];
+	sprintf_s(str_length, sizeof(str_length), "%d", get_snake()->length);
+	al_draw_text(g_font_r64, header_text_color, 15, 0, ALLEGRO_ALIGN_LEFT, str_length);
 
 	// Draw snake
 
