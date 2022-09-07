@@ -2,24 +2,25 @@
 #include <stdlib.h>
 #include "Snake.h"
 #include "DefaultConfig.h"
-#include <time.h>
+#include "Logger.h"
 
 //// INTERNAL VARIABLE 
 
-SNAKE g_snake = {.head = {.next_seg = NULL}, .length = 1};
-FOOD g_food;
-bool g_can_change_direction = true;
-int g_score = 0;
+static SNAKE g_snake = {.head = {.next_seg = NULL}, .length = 1};
+static FOOD g_food;
+static bool g_can_change_direction = true;
+static int g_score = 0;
+static int g_gametick = 0; // count +1 every APP_MAIN_TIMER_PERIOD and starts with game
 
-static int g_timestamp_old = 0;
+static int g_score_gametick_old = 0;
 
 //// INTERNAL FUNCTION DECLARATION
 
-void refresh_score(int snake_length, int period);
+static void refresh_score(int snake_length, int period);
 
 //// FUNCTION IMPLEMENTATION
 
-void refresh_score(int snake_length, int period) {
+static void refresh_score(int snake_length, int period) {
     int add_score = (int)(((float)GAME_MAX_SCORE - (2.0f * (float)period)) *
         (1.0f + (0.1f * ((float)snake_length - ((float)GAME_SNAKE_INITIAL_LENGTH - 1.0f)))));
     if (add_score < 10) {
@@ -35,21 +36,22 @@ void reset_game_exec() {
 
     refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
 
-    g_timestamp_old = (int)time(NULL);
-
+    g_gametick = 0;
+    g_score_gametick_old = 0;
     g_score = 0;
 }
 
 APP_NAV_STATE handle_game_exec_timer() {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
-    static int count = 0; // each counted time, a DISPLAY_FRAME_RATE has passed
-    
-    if (count < ((1 / APP_MAIN_TIMER_PERIOD)/g_snake.speed - 1)) {
-        count++;
+
+    g_gametick++;
+    int count_refresh = ((int)((1.0 / APP_MAIN_TIMER_PERIOD) / (float)g_snake.speed) - 1);
+    if (count_refresh <= 0) {
+        count_refresh = 1;
+        log_msg("Snake speed too high to process", LOG_TYPE_ERROR);
     }
-    else {
+    if ((g_gametick % count_refresh) == 0) {
         // A full second has passed
-        count = 0;
         move_snake(&g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
         
         //Check collision with itself
@@ -62,15 +64,14 @@ APP_NAV_STATE handle_game_exec_timer() {
             add_snake_seg(&g_snake);
             refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
             
-            int timestamp_curr = (int)time(NULL);
-            int diff = timestamp_curr - g_timestamp_old;
+            int diff_sec = (int)((g_gametick - g_score_gametick_old) * APP_MAIN_TIMER_PERIOD);
+            refresh_score(g_snake.length, diff_sec);
 
-            refresh_score(g_snake.length, diff);
-
-            g_timestamp_old = timestamp_curr;
+            g_score_gametick_old = g_gametick;
         }
         g_can_change_direction = true;
     }
+
     return next_state;
 }
 
