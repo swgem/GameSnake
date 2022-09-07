@@ -31,4 +31,6 @@ const FOOD* get_food();
 
 const int get_score();
 
+const int get_elapsed_time();
+
 #endif

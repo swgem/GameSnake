@@ -127,3 +127,7 @@ const FOOD* get_food() {
 const int get_score() {
     return g_score;
 }
+
+const int get_elapsed_time() {
+    return (int)(g_gametick * APP_MAIN_TIMER_PERIOD);
+}
