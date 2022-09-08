@@ -100,7 +100,7 @@ void app_loop() {
 
 static void change_nav_state(APP_NAV_STATE next_state) {
 	// Finish whatever necessary in old state
-	switch (next_state) {
+	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
 		finish_menu();
 		break;
