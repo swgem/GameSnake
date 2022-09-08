@@ -134,3 +134,7 @@ const int get_score() {
 const int get_elapsed_time() {
     return (int)(g_gametick * APP_MAIN_TIMER_PERIOD);
 }
+
+void finish_game_exec() {
+
+}

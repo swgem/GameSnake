@@ -30,4 +30,6 @@ APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action);
 
 APP_NAV_STATE get_option_highlight();
 
+void finish_menu();
+
 #endif

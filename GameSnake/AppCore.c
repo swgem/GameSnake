@@ -102,6 +102,26 @@ void app_loop() {
 }
 
 static void change_nav_state(APP_NAV_STATE next_state) {
+	// Finish whatever necessary in old state
+	switch (next_state) {
+	case APP_NAV_STATE_MENU:
+		finish_menu();
+		break;
+	case APP_NAV_STATE_GAME_EXEC:
+		finish_game_exec();
+		break;
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_SETTINGS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		log_msg("Invalid next navigation state!", LOG_TYPE_ERROR);
+		next_state = g_curr_nav_state; // Not allowed to change state
+		break;
+	}
+
 	// If app is navigating to next state, redefine navigation state params
 	switch (next_state) {
 	case APP_NAV_STATE_MENU:
@@ -111,6 +131,8 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 		reset_game_exec();
 		break;
 	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_SETTINGS:
 		break;
 	case APP_NAV_STATE_FINISH:
 		break;

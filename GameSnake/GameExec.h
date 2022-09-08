@@ -33,4 +33,6 @@ const int get_score();
 
 const int get_elapsed_time();
 
+void finish_game_exec();
+
 #endif
