@@ -13,6 +13,7 @@ void destroy_display();
 
 void draw_menu();
 void draw_game_exec();
+void draw_game_exec_finish();
 MENU_OPTION get_option_in_click_point(int x, int y);
 
 #endif

@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "AppText.h"
 #include "GameExec.h"
+#include "GameExecFinish.h"
 #include "allegro5/allegro_color.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
@@ -214,6 +215,19 @@ void draw_game_exec() {
 		al_draw_line(map_x1, (map_y1 + map_block_h * (i + 1)),
 			map_x2, (map_y1 + map_block_h * (i + 1)), map_line_color, map_edge_thickness);
 	}
+}
+
+void draw_game_exec_finish() {
+	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
+	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+
+	// Draw background
+	al_clear_to_color(bg_color);
+	
+	// Print final result
+	char str_score[10];
+	sprintf_s(str_score, sizeof(str_score), "%d", get_final_score());
+	al_draw_text(g_font_r64, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) - 50, ALLEGRO_ALIGN_CENTRE, str_score);
 }
 
 MENU_OPTION get_option_in_click_point(int x, int y) {

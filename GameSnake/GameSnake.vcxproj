@@ -139,6 +139,7 @@
     <ClCompile Include="AppText.c" />
     <ClCompile Include="Food.c" />
     <ClCompile Include="GameExec.c" />
+    <ClCompile Include="GameExecFinish.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Snake.c" />
     <ClCompile Include="Graphics.c" />
@@ -152,6 +153,7 @@
     <ClInclude Include="DefaultConfig.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="GameExec.h" />
+    <ClInclude Include="GameExecFinish.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Menu.h" />

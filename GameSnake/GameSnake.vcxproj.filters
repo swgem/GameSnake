@@ -42,6 +42,9 @@
     <ClCompile Include="Food.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameExecFinish.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Food.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExecFinish.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
