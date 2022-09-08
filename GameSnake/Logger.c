@@ -12,7 +12,7 @@ void SYSTEM_FATAL(const char* msg) {
 
 void log_msg(const char* msg, LOG_TYPE log_type) {
 #ifdef _DEBUG
-	printf(msg);
+	printf("%s\n", msg);
 #endif
 	// escrever no arquivo
 }

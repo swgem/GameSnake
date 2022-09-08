@@ -16,6 +16,7 @@ static APP_NAV_STATE get_next_nav_state();
 void reset_menu() {
     g_option_highlight = MENU_OPTION_NONE;
     play_menu_audio();
+    log_msg("User entered main menu.", LOG_TYPE_INFO);
 }
 
 APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action, MENU_OPTION next_option) {
@@ -84,15 +85,19 @@ static APP_NAV_STATE get_next_nav_state() {
         break;
     case MENU_OPTION_PLAY:
         next_state = APP_NAV_STATE_GAME_EXEC;
+        log_msg("User started a new game.", LOG_TYPE_INFO);
         break;
     case MENU_OPTION_RECORDS:
         next_state = APP_NAV_STATE_RECORDS;
+        log_msg("User saw records.", LOG_TYPE_INFO);
         break;
     case MENU_OPTION_SETTINGS:
         next_state = APP_NAV_STATE_SETTINGS;
+        log_msg("User acess settings menu.", LOG_TYPE_INFO);
         break;
     case MENU_OPTION_EXIT:
         next_state = APP_NAV_STATE_FINISH;
+        log_msg("User finishes program.", LOG_TYPE_INFO);
         break;
     default:
         log_msg("Invalid option highlight at getting next nav state", LOG_TYPE_ERROR);

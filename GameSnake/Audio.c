@@ -3,10 +3,14 @@
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_acodec.h"
 
+//// INTERNAL VARIABLE
+
 static ALLEGRO_SAMPLE* menu_sample = NULL;
 static ALLEGRO_SAMPLE* game_sample = NULL;
 static ALLEGRO_SAMPLE* food_sample = NULL;
 static ALLEGRO_SAMPLE* death_sample = NULL;
+
+//// FUNCTION IMPLEMENTATION
 
 void init_audio() {
 	al_install_audio();
