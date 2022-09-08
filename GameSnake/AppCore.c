@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "GameExec.h"
 #include "GameExecFinish.h"
+#include "Audio.h"
 
 //// INTERNAL VARIABLE
 
@@ -39,6 +40,7 @@ void app_init() {
 	if (g_ev_queue == NULL) SYSTEM_FATAL("Could not initialize event queue");
 
 	init_graphical_resources();
+	init_audio();
 
 	al_register_event_source(g_ev_queue, al_get_keyboard_event_source());
 	al_register_event_source(g_ev_queue, al_get_display_event_source(get_display()));
@@ -53,6 +55,7 @@ void app_finish() {
 	al_destroy_timer(g_main_timer);
 	al_destroy_event_queue(g_ev_queue);
 	destroy_display();
+	finish_audio();
 }
 
 void app_loop() {
