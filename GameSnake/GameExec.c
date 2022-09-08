@@ -65,6 +65,7 @@ APP_NAV_STATE handle_game_exec_timer() {
         //Check colision of the head with food
         if (g_food.pos_x == g_snake.head.pos_x && g_food.pos_y == g_snake.head.pos_y) {
             add_snake_seg(&g_snake);
+            play_food_audio();
             refresh_food_position(&g_food, &g_snake, (GAME_MAP_SIZE_X - 1), (GAME_MAP_SIZE_Y - 1));
             
             int diff_sec = (int)((g_gametick - g_score_gametick_old) * APP_MAIN_TIMER_PERIOD);
@@ -136,5 +137,5 @@ const int get_elapsed_time() {
 }
 
 void finish_game_exec() {
-
+    reset_audio();
 }

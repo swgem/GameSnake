@@ -103,5 +103,5 @@ static APP_NAV_STATE get_next_nav_state() {
 }
 
 void finish_menu() {
-
+    reset_audio();
 }
