@@ -100,3 +100,7 @@ static APP_NAV_STATE get_next_nav_state() {
 
     return next_state;
 }
+
+void finish_menu() {
+
+}
