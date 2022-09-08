@@ -8,7 +8,7 @@ static int g_elapsed_time;
 //// FUNCTION IMPLEMENTATION
 
 void reset_game_exec_finish() {
-
+    play_death_audio();
 }
 
 APP_NAV_STATE handle_game_exec_finish_event(GAME_EXEC_FINISH_USER_ACTION action) {
@@ -39,5 +39,5 @@ int get_total_elapsed_time() {
 }
 
 void finish_game_exec_finish() {
-
+    reset_audio();
 }
