@@ -42,11 +42,10 @@
     <ClCompile Include="Food.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="GameExecFinish.c">
-=======
+	<Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Audio.c">
->>>>>>> origin/main
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,11 +80,10 @@
     <ClInclude Include="Food.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="GameExecFinish.h">
-=======
+ 	<Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Audio.h">
->>>>>>> origin/main
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
