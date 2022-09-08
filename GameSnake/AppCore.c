@@ -112,6 +112,7 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 		finish_game_exec();
 		break;
 	case APP_NAV_STATE_GAME_EXEC_FINISH:
+		finish_game_exec_finish();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -134,6 +135,7 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 		reset_game_exec();
 		break;
 	case APP_NAV_STATE_GAME_EXEC_FINISH:
+		reset_game_exec_finish();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
