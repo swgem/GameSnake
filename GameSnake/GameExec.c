@@ -3,6 +3,7 @@
 #include "Snake.h"
 #include "DefaultConfig.h"
 #include "Logger.h"
+#include "Audio.h"
 
 //// INTERNAL VARIABLE 
 
@@ -30,6 +31,8 @@ static void refresh_score(int snake_length, int period) {
 }
 
 void reset_game_exec() {
+    
+    play_game_exec_audio();
     reset_snake(&g_snake, GAME_SNAKE_INITIAL_LENGTH,
         GAME_SNAKE_INITIAL_POS_X, GAME_SNAKE_INITIAL_POS_Y,
         GAME_SNAKE_SPEED, GAME_SNAKE_INITIAL_DIRECTION);

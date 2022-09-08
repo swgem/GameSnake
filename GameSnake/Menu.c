@@ -15,6 +15,7 @@ static APP_NAV_STATE get_next_nav_state();
 
 void reset_menu() {
     g_option_highlight = MENU_OPTION_NONE;
+    play_menu_audio();
 }
 
 APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action, MENU_OPTION next_option) {
