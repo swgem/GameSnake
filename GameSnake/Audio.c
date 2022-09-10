@@ -9,9 +9,16 @@
 static bool audio_initialized = false;
 
 static ALLEGRO_SAMPLE* g_menu_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_menu_id;
+
 static ALLEGRO_SAMPLE* g_game_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_game_id;
+
 static ALLEGRO_SAMPLE* g_food_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_food_id;
+
 static ALLEGRO_SAMPLE* g_death_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_death_id;
 
 //// FUNCTION IMPLEMENTATION
 
@@ -39,7 +46,7 @@ void init_audio() {
 
 void play_menu_audio() {
 	if (audio_initialized && g_menu_sample != NULL) {
-		if (!al_play_sample(g_menu_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL)) {
+		if (!al_play_sample(g_menu_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_menu_id)) {
 			log_msg("Tried but could not play menu audio.", LOG_TYPE_ERROR);
 		}
 	}
@@ -50,7 +57,7 @@ void play_menu_audio() {
 
 void play_game_exec_audio() {
 	if (audio_initialized && g_game_sample != NULL) {
-		if (!al_play_sample(g_game_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL)) {
+		if (!al_play_sample(g_game_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_game_id)) {
 			log_msg("Tried but could not play game audio.", LOG_TYPE_ERROR);
 		}
 	}
@@ -61,7 +68,7 @@ void play_game_exec_audio() {
 
 void play_food_audio() {
 	if (audio_initialized && g_food_sample != NULL) {
-		if (!al_play_sample(g_food_sample, 1, 0, 1.5, ALLEGRO_PLAYMODE_ONCE, NULL)) {
+		if (!al_play_sample(g_food_sample, 1, 0, 1.5, ALLEGRO_PLAYMODE_ONCE, &g_food_id)) {
 			log_msg("Tried but could not play food audio.", LOG_TYPE_ERROR);
 		}
 	}
@@ -72,7 +79,7 @@ void play_food_audio() {
 
 void play_death_audio() {
 	if (audio_initialized && g_death_sample != NULL) {
-		if (!al_play_sample(g_death_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL)) {
+		if (!al_play_sample(g_death_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_death_id)) {
 			log_msg("Tried but could not play death audio.", LOG_TYPE_ERROR);
 		}
 	}
