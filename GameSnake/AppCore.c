@@ -7,7 +7,7 @@
 #include "Graphics.h"
 #include "Menu.h"
 #include "GameExec.h"
-#include "GameExecFinish.h"
+#include "GameOver.h"
 #include "Audio.h"
 
 //// INTERNAL VARIABLE
@@ -111,8 +111,8 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 	case APP_NAV_STATE_GAME_EXEC:
 		finish_game_exec();
 		break;
-	case APP_NAV_STATE_GAME_EXEC_FINISH:
-		finish_game_exec_finish();
+	case APP_NAV_STATE_GAME_OVER:
+		finish_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -134,8 +134,8 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 	case APP_NAV_STATE_GAME_EXEC:
 		reset_game_exec();
 		break;
-	case APP_NAV_STATE_GAME_EXEC_FINISH:
-		reset_game_exec_finish();
+	case APP_NAV_STATE_GAME_OVER:
+		reset_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -161,7 +161,7 @@ static void handle_event_timer() {
 	case APP_NAV_STATE_GAME_EXEC:
 		next_state = handle_game_exec_timer();
 		break;
-	case APP_NAV_STATE_GAME_EXEC_FINISH:
+	case APP_NAV_STATE_GAME_OVER:
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -187,8 +187,8 @@ static void handle_event_frame_rate() {
 	case APP_NAV_STATE_GAME_EXEC:
 		draw_game_exec();
 		break;
-	case APP_NAV_STATE_GAME_EXEC_FINISH:
-		draw_game_exec_finish();
+	case APP_NAV_STATE_GAME_OVER:
+		draw_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
@@ -259,18 +259,18 @@ static void handle_event_key_up(int keycode) {
 		next_state = handle_game_exec_event(action);
 		break;
 	}
-	case APP_NAV_STATE_GAME_EXEC_FINISH: {
-		GAME_EXEC_FINISH_USER_ACTION action = GAME_EXEC_FINISH_USER_ACTION_NONE;
+	case APP_NAV_STATE_GAME_OVER: {
+		GAME_OVER_USER_ACTION action = GAME_OVER_USER_ACTION_NONE;
 		switch (keycode) {
 		case ALLEGRO_KEY_ENTER:
 		case ALLEGRO_KEY_PAD_ENTER:
 		case ALLEGRO_KEY_SPACE:
-			action = GAME_EXEC_FINISH_USER_ACTION_EXIT;
+			action = GAME_OVER_USER_ACTION_EXIT;
 			break;
 		default:
 			break;
 		}
-		next_state = handle_game_exec_finish_event(action);
+		next_state = handle_game_over_event(action);
 		break;
 	}
 	case APP_NAV_STATE_RECORDS:
@@ -307,7 +307,7 @@ static void handle_event_key_down(int keycode) {
 		next_state = handle_game_exec_event(action);
 		break;
 	}
-	case APP_NAV_STATE_GAME_EXEC_FINISH:
+	case APP_NAV_STATE_GAME_OVER:
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;

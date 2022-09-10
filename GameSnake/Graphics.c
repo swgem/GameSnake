@@ -3,7 +3,7 @@
 #include "Logger.h"
 #include "AppText.h"
 #include "GameExec.h"
-#include "GameExecFinish.h"
+#include "GameOver.h"
 #include "allegro5/allegro_color.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
@@ -217,7 +217,7 @@ void draw_game_exec() {
 	}
 }
 
-void draw_game_exec_finish() {
+void draw_game_over() {
 	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
 

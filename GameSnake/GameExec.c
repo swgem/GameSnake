@@ -3,7 +3,7 @@
 #include "Snake.h"
 #include "DefaultConfig.h"
 #include "Logger.h"
-#include "GameExecFinish.h"
+#include "GameOver.h"
 #include "Audio.h"
 
 //// INTERNAL VARIABLE 
@@ -60,7 +60,7 @@ APP_NAV_STATE handle_game_exec_timer() {
         
         //Check collision with itself
         if (check_snake_collision(&g_snake)) {
-            next_state = APP_NAV_STATE_GAME_EXEC_FINISH;
+            next_state = APP_NAV_STATE_GAME_OVER;
             log_msg("Snake collided itself and died.", LOG_TYPE_INFO);
         }
 
@@ -140,6 +140,6 @@ const int get_elapsed_time() {
 }
 
 void finish_game_exec() {
-    set_game_finish_params(g_score, get_elapsed_time());
+    set_game_over_params(g_score, get_elapsed_time());
     reset_audio();
 }

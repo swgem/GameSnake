@@ -42,8 +42,8 @@
     <ClCompile Include="Food.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameExecFinish.c">
-	<Filter>Source Files</Filter>
+    <ClCompile Include="GameOver.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Audio.c">
       <Filter>Source Files</Filter>
@@ -80,8 +80,8 @@
     <ClInclude Include="Food.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameExecFinish.h">
- 	<Filter>Header Files</Filter>
+    <ClInclude Include="GameOver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Header Files</Filter>

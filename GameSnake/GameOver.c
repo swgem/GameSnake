@@ -1,4 +1,5 @@
-#include "GameExecFinish.h"
+#include "GameOver.h"
+#include "Audio.h"
 
 //// INTERNAL VARIABLE
 
@@ -7,15 +8,15 @@ static int g_elapsed_time;
 
 //// FUNCTION IMPLEMENTATION
 
-void reset_game_exec_finish() {
+void reset_game_over() {
     play_death_audio();
 }
 
-APP_NAV_STATE handle_game_exec_finish_event(GAME_EXEC_FINISH_USER_ACTION action) {
-    APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC_FINISH;
+APP_NAV_STATE handle_game_over_event(GAME_OVER_USER_ACTION action) {
+    APP_NAV_STATE next_state = APP_NAV_STATE_GAME_OVER;
     
     switch (action) {
-    case GAME_EXEC_FINISH_USER_ACTION_EXIT:
+    case GAME_OVER_USER_ACTION_EXIT:
         next_state = APP_NAV_STATE_MENU;
         break;
     default:
@@ -25,7 +26,7 @@ APP_NAV_STATE handle_game_exec_finish_event(GAME_EXEC_FINISH_USER_ACTION action)
     return next_state;
 }
 
-void set_game_finish_params(int final_score, int elapsed_time) {
+void set_game_over_params(int final_score, int elapsed_time) {
     g_final_score = final_score;
     g_elapsed_time = elapsed_time;
 }
@@ -38,6 +39,6 @@ int get_total_elapsed_time() {
     return g_elapsed_time;
 }
 
-void finish_game_exec_finish() {
+void finish_game_over() {
     reset_audio();
 }
