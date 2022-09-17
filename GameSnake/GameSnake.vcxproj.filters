@@ -18,19 +18,10 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AppCore.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Snake.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameExec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AppText.c">
@@ -39,20 +30,17 @@
     <ClCompile Include="Menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Food.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameOver.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Audio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameExec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,12 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AppCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Snake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameExec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefaultConfig.h">
@@ -77,13 +59,13 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Food.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

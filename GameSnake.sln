@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameSnake", "GameSnake\GameSnake.vcxproj", "{E4E22EBE-29D1-4882-AB45-BE3802F0D586}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameSnakeLib", "GameSnakeLib\GameSnakeLib.vcxproj", "{35742633-1320-4049-A11D-43E3BC6531F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{E4E22EBE-29D1-4882-AB45-BE3802F0D586}.Release|x64.Build.0 = Release|x64
 		{E4E22EBE-29D1-4882-AB45-BE3802F0D586}.Release|x86.ActiveCfg = Release|Win32
 		{E4E22EBE-29D1-4882-AB45-BE3802F0D586}.Release|x86.Build.0 = Release|Win32
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Debug|x64.ActiveCfg = Debug|x64
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Debug|x64.Build.0 = Debug|x64
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Debug|x86.ActiveCfg = Debug|Win32
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Debug|x86.Build.0 = Debug|Win32
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Release|x64.ActiveCfg = Release|x64
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Release|x64.Build.0 = Release|x64
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Release|x86.ActiveCfg = Release|Win32
+		{35742633-1320-4049-A11D-43E3BC6531F3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
