@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Logger.h"
+#include "Audio.h"
 
 //// INTERNAL VARIABLE
 
@@ -19,7 +20,7 @@ void reset_menu() {
     log_msg("User entered main menu.", LOG_TYPE_INFO);
 }
 
-APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action, MENU_OPTION next_option) {
+APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action) {
     APP_NAV_STATE next_state = APP_NAV_STATE_MENU;
 
     switch (action) {
@@ -32,7 +33,6 @@ APP_NAV_STATE handle_menu_event(MENU_USER_ACTION action, MENU_OPTION next_option
         change_option_highlight(action);
         break;
     case MENU_USER_ACTION_SELECT:
-        g_option_highlight = next_option;
         break;
     case MENU_USER_ACTION_DESELECT:
         g_option_highlight = MENU_OPTION_NONE;
