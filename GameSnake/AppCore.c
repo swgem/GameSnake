@@ -9,6 +9,7 @@
 #include "GameExec.h"
 #include "GameOver.h"
 #include "Audio.h"
+#include "GameConfig.h"
 
 //// INTERNAL VARIABLE
 
@@ -47,6 +48,10 @@ void app_init() {
 	al_register_event_source(g_ev_queue, al_get_timer_event_source(g_main_timer));
 
 	reset_menu();
+
+	set_game_config(APP_MAIN_TIMER_PERIOD * 1000, GAME_MAP_SIZE_X, GAME_MAP_SIZE_Y,
+		GAME_MAX_SCORE, GAME_SNAKE_INITIAL_LENGTH, GAME_SNAKE_INITIAL_POS_X, GAME_SNAKE_INITIAL_POS_Y,
+		GAME_SNAKE_SPEED, GAME_SNAKE_INITIAL_DIRECTION);
 
 	al_start_timer(g_main_timer);
 }

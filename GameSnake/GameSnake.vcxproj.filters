@@ -39,6 +39,9 @@
     <ClCompile Include="GameExec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\GameSnakeLib\Logger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameExec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameSnakeLib\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

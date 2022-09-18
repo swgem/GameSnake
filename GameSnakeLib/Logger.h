@@ -1,13 +1,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-//// ENUM
-
-typedef enum {
-    LOG_TYPE_ERROR = 0,
-    LOG_TYPE_INFO,
-    LOG_TYPE_FATAL
-} LOG_TYPE;
+#include "LoggerInterface.h"
 
 //// EXTERNAL FUNCTION DECLARATION
 

@@ -21,7 +21,13 @@
     <ClInclude Include="Snake.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.h">
+    <ClInclude Include="GameConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,7 +38,13 @@
     <ClCompile Include="Snake.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.c">
+    <ClCompile Include="GameConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameController.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerInterface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

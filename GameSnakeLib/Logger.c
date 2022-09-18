@@ -6,7 +6,7 @@
 
 void SYSTEM_FATAL(const char* msg) {
 	log_msg(msg, LOG_TYPE_FATAL);
-	getchar();
+	(void)getchar();
 	exit(1);
 }
 

@@ -2,8 +2,7 @@
 #define GAME_EXEC_H
 
 #include "AppNav.h"
-#include "Snake.h"
-#include "Food.h"
+#include "GameController.h"
 
 //// ENUM
 
@@ -20,19 +19,9 @@ typedef enum {
 //// EXTERNAL FUNCTION DECLARATION
 
 void reset_game_exec();
+void finish_game_exec();
 
 APP_NAV_STATE handle_game_exec_timer();
-
 APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action);
-
-const SNAKE* get_snake();
-
-const FOOD* get_food();
-
-const int get_score();
-
-const int get_elapsed_time();
-
-void finish_game_exec();
 
 #endif

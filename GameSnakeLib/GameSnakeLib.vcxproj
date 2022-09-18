@@ -20,12 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Food.h" />
-    <ClInclude Include="Logger.h" />
+    <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="LoggerInterface.h" />
     <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Food.c" />
-    <ClCompile Include="Logger.c" />
+    <ClCompile Include="GameConfig.c" />
+    <ClCompile Include="GameController.c" />
+    <ClCompile Include="LoggerInterface.c" />
     <ClCompile Include="Snake.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

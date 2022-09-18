@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\GameSnakeLib\Logger.c" />
     <ClCompile Include="AppCore.c" />
     <ClCompile Include="AppText.c" />
     <ClCompile Include="Audio.c" />
@@ -147,6 +148,7 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\GameSnakeLib\Logger.h" />
     <ClInclude Include="AppCore.h" />
     <ClInclude Include="AppNav.h" />
     <ClInclude Include="AppText.h" />
