@@ -1,6 +1,5 @@
 #include "Food.h"
-#include <time.h>
-#include <stdlib.h>
+#include "Tools.h"
 
 //// INTERNAL FUNCTION DECLARATION
 
@@ -9,8 +8,8 @@ static void change_food_position(FOOD* food, int x_lim, int y_lim);
 //// FUNCTION IMPLEMENTATION
 
 static void change_food_position(FOOD* food, int x_lim, int y_lim){
-	int r_x = rand();
-	int r_y = rand();
+	int r_x = generate_random();
+	int r_y = generate_random();
 
 	int x_old = food->pos_x;
 	int y_old = food->pos_y;
@@ -23,17 +22,17 @@ static void change_food_position(FOOD* food, int x_lim, int y_lim){
 	}
 }
 
-bool check_collision_snake_food(SNAKE* snake, FOOD* food) {
-	bool collided = false;
+int check_collision_snake_food(SNAKE* snake, FOOD* food) {
+	int collided = 0;
 	SNAKE_SEG* iter = &snake->head;
-	while (iter->next_seg != NULL) {
+	while (iter->next_seg != (void*)0) {
 		iter = iter->next_seg;
 		if ((food->pos_x == iter->pos_x) && (food->pos_y == iter->pos_y)) {
-			collided = true;
+			collided = 1;
 			break;
 		}
 	}
-	return collided;
+	return 0;
 }
 
 void refresh_food_position(FOOD* food, SNAKE* snake, int x_lim, int y_lim) {

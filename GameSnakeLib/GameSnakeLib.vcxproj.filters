@@ -30,6 +30,9 @@
     <ClInclude Include="LoggerInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Food.c">
@@ -44,7 +47,7 @@
     <ClCompile Include="GameController.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoggerInterface.c">
+    <ClCompile Include="Tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

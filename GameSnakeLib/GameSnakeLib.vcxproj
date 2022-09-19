@@ -24,13 +24,14 @@
     <ClInclude Include="GameController.h" />
     <ClInclude Include="LoggerInterface.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Food.c" />
     <ClCompile Include="GameConfig.c" />
     <ClCompile Include="GameController.c" />
-    <ClCompile Include="LoggerInterface.c" />
     <ClCompile Include="Snake.c" />
+    <ClCompile Include="Tools.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -10,6 +10,7 @@
 #include "GameOver.h"
 #include "Audio.h"
 #include "GameConfig.h"
+#include "Tools.h"
 
 //// INTERNAL VARIABLE
 
@@ -20,6 +21,8 @@ static APP_NAV_STATE g_curr_nav_state = APP_NAV_STATE_MENU;
 
 //// INTERNAL FUNCTION DECLARATION
 
+static void fatal();
+
 static void change_nav_state(APP_NAV_STATE next_state);
 
 static void handle_event_timer();
@@ -28,6 +31,10 @@ static void handle_event_key_up(int keycode);
 static void handle_event_key_down(int keycode);
 
 //// FUNCTION IMPLEMENTATION
+
+static void fatal() {
+	exit(1);
+}
 
 void app_init() {
 	srand(time(NULL));
@@ -52,6 +59,9 @@ void app_init() {
 	set_game_config(APP_MAIN_TIMER_PERIOD * 1000, GAME_MAP_SIZE_X, GAME_MAP_SIZE_Y,
 		GAME_MAX_SCORE, GAME_SNAKE_INITIAL_LENGTH, GAME_SNAKE_INITIAL_POS_X, GAME_SNAKE_INITIAL_POS_Y,
 		GAME_SNAKE_SPEED, GAME_SNAKE_INITIAL_DIRECTION);
+	set_system_fatal_func(fatal);
+	set_mem_alloc_func(malloc);
+	set_generate_random_func(rand);
 
 	al_start_timer(g_main_timer);
 }

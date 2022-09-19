@@ -1,6 +1,7 @@
 #include "Snake.h"
-#include <stdlib.h>
 #include "Logger.h"
+#include "Tools.h"
+#include "GameConfig.h"
 
 //// INTERNAL FUNCTION DECLARATION
 
@@ -10,17 +11,24 @@ static void destroy_segments(SNAKE_SEG* seg);
 
 void add_snake_seg(SNAKE* snake) {
 	SNAKE_SEG* iter_tail = &snake->head;
-	SNAKE_SEG* iter_pre_tail = NULL;
+	SNAKE_SEG* iter_pre_tail = (void*)0;
 
-	while (iter_tail->next_seg != NULL) {
+	while (iter_tail->next_seg != (void*)0) {
 		iter_pre_tail = iter_tail;
 		iter_tail = iter_tail->next_seg;
 	}
 
-	SNAKE_SEG* new_seg = (SNAKE_SEG*)malloc(sizeof(SNAKE_SEG));
-	new_seg->next_seg = NULL;
+	SNAKE_SEG* new_seg = (SNAKE_SEG*)mem_alloc(sizeof(SNAKE_SEG));
+	if (new_seg == (void*)0) {
+#ifdef USE_LOGGER
+		log_msg("Could not allocate memory for snake seg", LOG_TYPE_FATAL);
+#endif
+		system_fatal();
+	}
+	
+	new_seg->next_seg = (void*)0;
 
-	if (iter_pre_tail == NULL) {
+	if (iter_pre_tail == (void*)0) {
 		switch (snake->direction) {
 		case MOVEMENT_DIRECTION_DOWN:
 			new_seg->pos_x = iter_tail->pos_x;
@@ -72,7 +80,7 @@ void add_snake_seg(SNAKE* snake) {
 }
 
 static void destroy_segments(SNAKE_SEG* seg) {
-	if (seg->next_seg != NULL) {
+	if (seg->next_seg != (void*)0) {
 		destroy_segments(seg->next_seg);
 	}
 	free(seg);
@@ -80,9 +88,9 @@ static void destroy_segments(SNAKE_SEG* seg) {
 
 void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVEMENT_DIRECTION direction) {
 	// Destroy all segments leaving only the head
-	if (snake->head.next_seg != NULL) destroy_segments(snake->head.next_seg);
+	if (snake->head.next_seg != (void*)0) destroy_segments(snake->head.next_seg);
 	snake->length = 1;
-	snake->head.next_seg = NULL;
+	snake->head.next_seg = (void*)0;
 	snake->head.pos_x = pos_x;
 	snake->head.pos_y = pos_y;
 	snake->speed = speed;
@@ -128,7 +136,7 @@ void move_snake(SNAKE* snake, int x_lim, int y_lim){
 		break;
 	}
 	SNAKE_SEG* iter = &snake->head;
-	while (iter->next_seg != NULL) {
+	while (iter->next_seg != (void*)0) {
 		int x_old = iter->next_seg->pos_x;
 		int y_old = iter->next_seg->pos_y;
 		
@@ -140,12 +148,12 @@ void move_snake(SNAKE* snake, int x_lim, int y_lim){
 	}
 }
 
-bool check_snake_collision(SNAKE* snake) {
-	bool collided = false;
+int check_snake_collision(SNAKE* snake) {
+	int collided = 0;
 	SNAKE_SEG* iter = snake->head.next_seg;
-	while (iter != NULL) {
+	while (iter != (void*)0) {
 		if (iter->pos_x == snake->head.pos_x && iter->pos_y == snake->head.pos_y) {
-			collided = true;
+			collided = 1;
 			break;
 		}
 		iter = iter->next_seg;
