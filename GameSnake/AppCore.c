@@ -61,6 +61,7 @@ void app_init() {
 		GAME_SNAKE_SPEED, GAME_SNAKE_INITIAL_DIRECTION);
 	set_system_fatal_func(fatal);
 	set_mem_alloc_func(malloc);
+	set_mem_free_func(free);
 	set_generate_random_func(rand);
 
 	al_start_timer(g_main_timer);

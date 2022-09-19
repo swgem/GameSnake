@@ -83,7 +83,7 @@ static void destroy_segments(SNAKE_SEG* seg) {
 	if (seg->next_seg != (void*)0) {
 		destroy_segments(seg->next_seg);
 	}
-	free(seg);
+	mem_free(seg);
 }
 
 void reset_snake(SNAKE* snake, int length, int pos_x, int pos_y, int speed, MOVEMENT_DIRECTION direction) {
