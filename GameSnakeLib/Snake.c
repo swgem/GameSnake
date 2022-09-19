@@ -1,5 +1,5 @@
 #include "Snake.h"
-#include "Logger.h"
+#include "LoggerInterface.h"
 #include "Tools.h"
 #include "GameConfig.h"
 

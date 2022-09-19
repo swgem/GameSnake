@@ -137,18 +137,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\GameSnakeLib\Logger.c" />
     <ClCompile Include="AppCore.c" />
     <ClCompile Include="AppText.c" />
     <ClCompile Include="Audio.c" />
     <ClCompile Include="GameExec.c" />
     <ClCompile Include="GameOver.c" />
+    <ClCompile Include="Logger.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Graphics.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\GameSnakeLib\Logger.h" />
     <ClInclude Include="AppCore.h" />
     <ClInclude Include="AppNav.h" />
     <ClInclude Include="AppText.h" />
@@ -157,6 +156,7 @@
     <ClInclude Include="GameExec.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
