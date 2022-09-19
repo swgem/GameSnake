@@ -79,7 +79,7 @@ GAME_EVENT game_run() {
         ret = GAME_EVENT_SNAKE_MOVED;
 
         //Check colision of the head with food
-        if (g_food.pos_x == g_snake.head.pos_x && g_food.pos_y == g_snake.head.pos_y) {
+        if (check_collision_snake_food(&g_snake, &g_food)) {
             add_snake_seg(&g_snake);
             refresh_food_position(&g_food, &g_snake, (cfg_game_map_size_x() - 1), (cfg_game_map_size_y() - 1));
 

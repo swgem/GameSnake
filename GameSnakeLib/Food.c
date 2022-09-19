@@ -22,17 +22,12 @@ static void change_food_position(FOOD* food, int x_lim, int y_lim){
 	}
 }
 
-int check_collision_snake_food(SNAKE* snake, FOOD* food) {
+int check_collision_snake_food(const SNAKE* snake, const FOOD* food) {
 	int collided = 0;
-	SNAKE_SEG* iter = &snake->head;
-	while (iter->next_seg != (void*)0) {
-		iter = iter->next_seg;
-		if ((food->pos_x == iter->pos_x) && (food->pos_y == iter->pos_y)) {
-			collided = 1;
-			break;
-		}
+	if (food->pos_x == snake->head.pos_x && food->pos_y == snake->head.pos_y) {
+		collided = 1;
 	}
-	return 0;
+	return collided;
 }
 
 void refresh_food_position(FOOD* food, SNAKE* snake, int x_lim, int y_lim) {
