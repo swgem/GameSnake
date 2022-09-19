@@ -70,7 +70,9 @@ GAME_EVENT game_run() {
     int count_refresh = ((int)((1.0f / ((float)cfg_game_running_period() / 1000.0f)) / (float)g_snake.speed) - 1);
     if (count_refresh <= 0) {
         count_refresh = 1;
+#ifdef USE_LOGGER
         log_msg("Snake speed too high to process", LOG_TYPE_ERROR);
+#endif
     }
     if ((g_gametick % count_refresh) == 0) {
         move_snake(&g_snake, (cfg_game_map_size_x() - 1), (cfg_game_map_size_y() - 1));
@@ -87,13 +89,17 @@ GAME_EVENT game_run() {
             g_last_score_gametick = g_gametick;
 
             ret = GAME_EVENT_SNAKE_ATE_FOOD;
+#ifdef USE_LOGGER
             log_msg("Snake ate food.", LOG_TYPE_INFO);
+#endif
         }
 
         //Check collision with itself
         if (check_snake_collision(&g_snake)) {
             ret = GAME_EVENT_SNAKE_DIED;
+#ifdef USE_LOGGER
             log_msg("Snake collided itself and died.", LOG_TYPE_INFO);
+#endif
         }
     }
 

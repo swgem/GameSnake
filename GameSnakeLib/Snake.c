@@ -39,7 +39,9 @@ void add_snake_seg(SNAKE* snake) {
 			new_seg->pos_y = iter_tail->pos_y;
 			break;
 		default:
+#ifdef USE_LOGGER
 			log_msg("In function add_snake_seg, direction error.", LOG_TYPE_ERROR);
+#endif
 			break;
 		}
 	}
@@ -120,7 +122,9 @@ void move_snake(SNAKE* snake, int x_lim, int y_lim){
 		}
 		break;
 	default:
+#ifdef USE_LOGGER
 		log_msg("In function move_snake, direction error.", LOG_TYPE_ERROR);
+#endif
 		break;
 	}
 	SNAKE_SEG* iter = &snake->head;
