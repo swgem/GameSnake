@@ -5,6 +5,10 @@
 #include "GameOver.h"
 #include "Audio.h"
 
+//// INTERNAL VARIABLE
+
+static bool g_is_paused = false;
+
 //// INTERNAL FUNCTION DECLARATION
 
 static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake);
@@ -37,6 +41,11 @@ static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake) {
     return ret;
 }
 
+bool is_game_pased() {
+    return g_is_paused;
+
+}
+
 void reset_game_exec() {
     play_game_exec_audio();
     game_restart();
@@ -50,21 +59,23 @@ void finish_game_exec() {
 APP_NAV_STATE handle_game_exec_timer() {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
 
-    GAME_EVENT event = game_run();
-    switch (event) {
-    case GAME_EVENT_NONE:
-        break;
-    case GAME_EVENT_SNAKE_MOVED:
-        break;
-    case GAME_EVENT_SNAKE_ATE_FOOD:
-        play_food_audio();
-        break;
-    case GAME_EVENT_SNAKE_DIED:
-        next_state = APP_NAV_STATE_GAME_OVER;
-        break;
-    default:
-        log_msg("Invalid game event", LOG_TYPE_ERROR);
-        break;
+    if (!g_is_paused) {
+        GAME_EVENT event = game_run();
+        switch (event) {
+        case GAME_EVENT_NONE:
+            break;
+        case GAME_EVENT_SNAKE_MOVED:
+            break;
+        case GAME_EVENT_SNAKE_ATE_FOOD:
+            play_food_audio();
+            break;
+        case GAME_EVENT_SNAKE_DIED:
+            next_state = APP_NAV_STATE_GAME_OVER;
+            break;
+        default:
+            log_msg("Invalid game event", LOG_TYPE_ERROR);
+            break;
+        }
     }
 
     return next_state;
@@ -92,6 +103,14 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
     case GAME_EXEC_USER_ACTION_RIGHT:
         if (actual_curr_snake_direction(get_snake()) != MOVEMENT_DIRECTION_LEFT) {
             set_snake_direction(MOVEMENT_DIRECTION_RIGHT);
+        }
+        break;
+    case GAME_EXEC_USER_ACTION_PAUSE:
+        if (!g_is_paused) {
+            g_is_paused = true;
+        }
+        else {
+            g_is_paused = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP:

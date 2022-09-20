@@ -1,5 +1,6 @@
 #ifndef GAME_EXEC_H
 #define GAME_EXEC_H
+#include <stdbool.h>
 
 #include "AppNav.h"
 #include "GameController.h"
@@ -13,11 +14,14 @@ typedef enum {
     GAME_EXEC_USER_ACTION_LEFT,
     GAME_EXEC_USER_ACTION_RIGHT,
     GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP,
-    GAME_EXEC_USER_ACTION_SPACEBAR_KEYDOWN
+    GAME_EXEC_USER_ACTION_SPACEBAR_KEYDOWN,
+    GAME_EXEC_USER_ACTION_PAUSE
+
 } GAME_EXEC_USER_ACTION;
 
 //// EXTERNAL FUNCTION DECLARATION
 
+bool is_game_pased();
 void reset_game_exec();
 void finish_game_exec();
 
