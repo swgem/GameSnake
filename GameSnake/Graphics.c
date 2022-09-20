@@ -164,7 +164,7 @@ void draw_game_exec() {
 
 	al_draw_line(0, header_h, DISPLAY_RESOLUTION_X, header_h, map_line_color, map_edge_thickness);
 
-	if (!is_game_pased()) {
+	if (!is_game_paused()) {
 		char str_score[10];
 		sprintf_s(str_score, sizeof(str_score), "%d", get_score());
 		al_draw_text(g_font_r64, header_text_color, (DISPLAY_RESOLUTION_X / 2), 0, ALLEGRO_ALIGN_CENTRE, str_score);

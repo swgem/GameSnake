@@ -3,6 +3,7 @@
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_acodec.h"
 #include "Logger.h"
+#include "GameExec.h"
 
 //// INTERNAL VARIABLE
 
@@ -20,6 +21,8 @@ static ALLEGRO_SAMPLE_ID g_food_id;
 static ALLEGRO_SAMPLE* g_death_sample = NULL;
 static ALLEGRO_SAMPLE_ID g_death_id;
 
+static ALLEGRO_SAMPLE* g_paused_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_paused_id;
 //// FUNCTION IMPLEMENTATION
 
 void init_audio() {
@@ -42,6 +45,9 @@ void init_audio() {
 	if (g_food_sample == NULL) log_msg("Could not load food audio.", LOG_TYPE_ERROR);
 	g_death_sample = al_load_sample("res/OST_DEATH.ogg");
 	if (g_death_sample == NULL) log_msg("Could not load death audio.", LOG_TYPE_ERROR);
+	g_paused_sample = al_load_sample("res/OST_PAUSED.ogg");
+	if (g_paused_sample == NULL) log_msg("Could not load food audio.", LOG_TYPE_ERROR);
+
 }
 
 void play_menu_audio() {
@@ -56,13 +62,24 @@ void play_menu_audio() {
 }
 
 void play_game_exec_audio() {
-	if (audio_initialized && g_game_sample != NULL) {
-		if (!al_play_sample(g_game_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_game_id)) {
-			log_msg("Tried but could not play game audio.", LOG_TYPE_ERROR);
+		if (audio_initialized && g_game_sample != NULL) {
+			if (!al_play_sample(g_game_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_game_id)) {
+				log_msg("Tried but could not play game audio.", LOG_TYPE_ERROR);
+			}
+		}
+		else {
+			log_msg("Cannot play game audio.", LOG_TYPE_ERROR);
+		}
+}
+
+void play_pause_audio() {
+	if (audio_initialized && g_paused_sample != NULL) {
+		if (!al_play_sample(g_paused_sample, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, &g_paused_id)) {
+			log_msg("Tried but could not play paused audio.", LOG_TYPE_ERROR);
 		}
 	}
 	else {
-		log_msg("Cannot play game audio.", LOG_TYPE_ERROR);
+		log_msg("Cannot play paused audio.", LOG_TYPE_ERROR);
 	}
 }
 

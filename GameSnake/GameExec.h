@@ -21,7 +21,7 @@ typedef enum {
 
 //// EXTERNAL FUNCTION DECLARATION
 
-bool is_game_pased();
+bool is_game_paused();
 void reset_game_exec();
 void finish_game_exec();
 

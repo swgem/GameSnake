@@ -13,7 +13,7 @@ static bool g_can_change_direction = true;
 
 //// FUNCTION IMPLEMENTATION
 
-bool is_game_pased() {
+bool is_game_paused() {
     return g_is_paused;
 }
 
@@ -82,6 +82,7 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
     case GAME_EXEC_USER_ACTION_PAUSE:
         if (!g_is_paused) {
             g_is_paused = true;
+            play_pause_audio();
         }
         else {
             g_is_paused = false;

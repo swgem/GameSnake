@@ -10,5 +10,6 @@ void play_food_audio();
 void play_death_audio();
 void reset_audio();
 void finish_audio();
+void play_pause_audio();
 
 #endif
