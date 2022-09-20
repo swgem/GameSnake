@@ -1,5 +1,6 @@
 #ifndef GAME_EXEC_H
 #define GAME_EXEC_H
+#include <stdbool.h>
 
 #include "AppNav.h"
 #include "GameController.h"
@@ -20,6 +21,7 @@ typedef enum {
 
 //// EXTERNAL FUNCTION DECLARATION
 
+bool is_game_pased();
 void reset_game_exec();
 void finish_game_exec();
 

@@ -18,6 +18,7 @@
 #define APP_TEXT_COLOR "#737119"
 #define APP_TEXT_HIGHLIGHT_COLOR "#ffffff"
 #define APP_HEADER_TEXT_COLOR "#ffffff"
+#define APP_PAUSED_TEXT_COLOR "#ff0000"
 #define APP_MAP_LINE_COLOR "#ffffff"
 #define APP_SNAKE_COLOR_H 120.0f
 #define APP_SNAKE_COLOR_S 1.0f

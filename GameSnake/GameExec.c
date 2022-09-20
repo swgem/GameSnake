@@ -10,7 +10,12 @@
 static bool g_is_paused = false;
 static bool g_can_change_direction = true;
 
+
 //// FUNCTION IMPLEMENTATION
+
+bool is_game_pased() {
+    return g_is_paused;
+}
 
 void reset_game_exec() {
     play_game_exec_audio();
