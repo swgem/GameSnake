@@ -74,7 +74,7 @@ void play_game_exec_audio() {
 
 void play_pause_audio() {
 	if (audio_initialized && g_paused_sample != NULL) {
-		if (!al_play_sample(g_paused_sample, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, &g_paused_id)) {
+		if (!al_play_sample(g_paused_sample, 1, 0, 1 , ALLEGRO_PLAYMODE_ONCE, &g_paused_id)) {
 			log_msg("Tried but could not play paused audio.", LOG_TYPE_ERROR);
 		}
 	}

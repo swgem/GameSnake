@@ -5,16 +5,45 @@
 #include "GameOver.h"
 #include "Audio.h"
 
-//// INTERNAL VARIABLE 
+//// INTERNAL VARIABLE
 
 static bool g_is_paused = false;
-static bool g_can_change_direction = true;
 
+//// INTERNAL FUNCTION DECLARATION
+
+static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake);
 
 //// FUNCTION IMPLEMENTATION
 
+static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake) {
+    MOVEMENT_DIRECTION ret = snake->direction;
+    if (snake->head.next_seg != (void*)0) {
+        if (snake->head.pos_x == snake->head.next_seg->pos_x) {
+            if (snake->head.pos_y > snake->head.next_seg->pos_y) {
+                ret = MOVEMENT_DIRECTION_DOWN;
+            }
+            else {
+                ret = MOVEMENT_DIRECTION_UP;
+            }
+        }
+        else if (snake->head.pos_y == snake->head.next_seg->pos_y) {
+            if (snake->head.pos_x > snake->head.next_seg->pos_x) {
+                ret = MOVEMENT_DIRECTION_RIGHT;
+            }
+            else {
+                ret = MOVEMENT_DIRECTION_LEFT;
+            }
+        }
+        else {
+            log_msg("Something is really wrong with snake segments position...", LOG_TYPE_ERROR);
+        }
+    }
+    return ret;
+}
+
 bool is_game_paused() {
     return g_is_paused;
+
 }
 
 void reset_game_exec() {
@@ -29,13 +58,13 @@ void finish_game_exec() {
 
 APP_NAV_STATE handle_game_exec_timer() {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_EXEC;
+
     if (!g_is_paused) {
         GAME_EVENT event = game_run();
         switch (event) {
         case GAME_EVENT_NONE:
             break;
         case GAME_EVENT_SNAKE_MOVED:
-            g_can_change_direction = true;
             break;
         case GAME_EVENT_SNAKE_ATE_FOOD:
             play_food_audio();
@@ -48,6 +77,7 @@ APP_NAV_STATE handle_game_exec_timer() {
             break;
         }
     }
+
     return next_state;
 }
 
@@ -56,27 +86,23 @@ APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action) {
 
     switch (action) {
     case GAME_EXEC_USER_ACTION_DOWN:
-        if (g_can_change_direction && get_snake()->direction != MOVEMENT_DIRECTION_UP) {
+        if (actual_curr_snake_direction(get_snake()) != MOVEMENT_DIRECTION_UP) {
             set_snake_direction(MOVEMENT_DIRECTION_DOWN);
-            g_can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_UP:
-        if (g_can_change_direction && get_snake()->direction != MOVEMENT_DIRECTION_DOWN) {
+        if (actual_curr_snake_direction(get_snake()) != MOVEMENT_DIRECTION_DOWN) {
             set_snake_direction(MOVEMENT_DIRECTION_UP);
-            g_can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_LEFT:
-        if (g_can_change_direction && get_snake()->direction != MOVEMENT_DIRECTION_RIGHT) {
+        if (actual_curr_snake_direction(get_snake()) != MOVEMENT_DIRECTION_RIGHT) {
             set_snake_direction(MOVEMENT_DIRECTION_LEFT);
-            g_can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_RIGHT:
-        if (g_can_change_direction && get_snake()->direction != MOVEMENT_DIRECTION_LEFT) {
+        if (actual_curr_snake_direction(get_snake()) != MOVEMENT_DIRECTION_LEFT) {
             set_snake_direction(MOVEMENT_DIRECTION_RIGHT);
-            g_can_change_direction = false;
         }
         break;
     case GAME_EXEC_USER_ACTION_PAUSE:
