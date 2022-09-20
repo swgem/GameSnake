@@ -11,7 +11,8 @@ typedef struct {
 
 //// EXTERNAL FUNCTION DECLARATION
 
-int check_collision_snake_food(const SNAKE* snake, const FOOD* food);
+int check_collision_snake_food(SNAKE* snake, FOOD* food);
+
 void refresh_food_position(FOOD* food, SNAKE* snake, int x_lim, int y_lim);
 
 #endif
