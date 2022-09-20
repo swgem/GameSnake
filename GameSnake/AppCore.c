@@ -269,6 +269,11 @@ static void handle_event_key_up(int keycode) {
 		case ALLEGRO_KEY_RSHIFT:
 			action = GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP;
 			break;
+		case ALLEGRO_KEY_ESCAPE:
+		case ALLEGRO_KEY_P:
+		case ALLEGRO_KEY_LCTRL:
+			action = GAME_EXEC_USER_ACTION_PAUSE;
+			break;
 		default:
 			break;
 		}
