@@ -241,6 +241,14 @@ void draw_game_over() {
 	al_draw_text(g_font_r64, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) - 50, ALLEGRO_ALIGN_CENTRE, str_score);
 }
 
+void draw_settings() {
+	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
+	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+
+	// Draw background
+	al_clear_to_color(bg_color);
+}
+
 MENU_OPTION get_option_in_click_point(int x, int y) {
 
 }

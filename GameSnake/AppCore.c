@@ -208,6 +208,9 @@ static void handle_event_frame_rate() {
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;
+	case APP_NAV_STATE_SETTINGS:
+		draw_settings();
+		break;
 	case APP_NAV_STATE_FINISH:
 		break;
 	default:
