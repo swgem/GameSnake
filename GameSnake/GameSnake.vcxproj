@@ -146,6 +146,7 @@
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Graphics.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="RecordsController.c" />
     <ClCompile Include="Settings.c" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="RecordsController.h" />
     <ClInclude Include="Settings.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 #include "GameOver.h"
 #include "Audio.h"
+#include "RecordsController.h"
 
 //// INTERNAL VARIABLE
 
