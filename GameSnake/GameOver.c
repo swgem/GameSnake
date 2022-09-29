@@ -1,4 +1,5 @@
 #include "GameOver.h"
+#include <stdlib.h>
 #include "Audio.h"
 #include "RecordsController.h"
 
@@ -11,6 +12,12 @@ static int g_elapsed_time;
 
 void reset_game_over() {
     play_death_audio();
+
+    int last_record = 0;
+    get_last_record(NULL, &last_record);
+    if (g_final_score > last_record) {
+        insert_new_record("Eric", g_final_score);
+    }
 }
 
 APP_NAV_STATE handle_game_over_event(GAME_OVER_USER_ACTION action) {
