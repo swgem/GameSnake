@@ -8,7 +8,8 @@ static const char* g_app_text_array[] = {
     "PLAY",
     "RECORDS",
     "SETTINGS",
-    "EXIT"
+    "EXIT",
+    "FINAL SCORE: "
 };
 
 //// FUNCTION IMPLEMENTATION

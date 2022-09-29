@@ -237,8 +237,13 @@ void draw_game_over() {
 	
 	// Print final result
 	char str_score[10];
+	int str_score_txt_size = strlen(get_app_text(APP_TEXT_ID_FINAL_SCORE)) + sizeof(str_score);
+	char* str_score_txt = (char*)malloc(str_score_txt_size);
 	sprintf_s(str_score, sizeof(str_score), "%d", get_final_score());
-	al_draw_text(g_font_r64, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2) - 50, ALLEGRO_ALIGN_CENTRE, str_score);
+	sprintf_s(str_score_txt, str_score_txt_size, "%s%s",
+		get_app_text(APP_TEXT_ID_FINAL_SCORE), str_score);
+
+	al_draw_text(g_font_r64, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 3) - 50, ALLEGRO_ALIGN_CENTRE, str_score_txt);
 }
 
 void draw_settings() {
