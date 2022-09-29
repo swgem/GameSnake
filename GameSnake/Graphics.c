@@ -170,7 +170,7 @@ void draw_game_exec() {
 		al_draw_text(g_font_r64, header_text_color, (DISPLAY_RESOLUTION_X / 2), 0, ALLEGRO_ALIGN_CENTRE, str_score);
 
 		char str_time[10];
-		sprintf_s(str_time, sizeof(str_time), "%d", get_elapsed_time());
+		sprintf_s(str_time, sizeof(str_time), "%d", (int)get_elapsed_time());
 		al_draw_text(g_font_r64, header_text_color, DISPLAY_RESOLUTION_X - 15, 0, ALLEGRO_ALIGN_RIGHT, str_time);
 
 		char str_length[10];

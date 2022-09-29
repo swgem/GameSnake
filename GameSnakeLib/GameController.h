@@ -18,7 +18,7 @@ typedef enum {
 const SNAKE* get_snake();
 const FOOD* get_food();
 int get_score();
-int get_elapsed_time();
+float get_elapsed_time();
 
 void set_snake_direction(MOVEMENT_DIRECTION direction);
 void set_snake_speed(int speed);
