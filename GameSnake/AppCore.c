@@ -256,6 +256,22 @@ static void handle_event_key_up(int keycode) {
 		case ALLEGRO_KEY_RSHIFT:
 			action = GAME_EXEC_USER_ACTION_SPACEBAR_KEYUP;
 			break;
+		case ALLEGRO_KEY_UP:
+		case ALLEGRO_KEY_W:
+			action = GAME_EXEC_USER_ACTION_UP_KEYUP;
+			break;
+		case ALLEGRO_KEY_DOWN:
+		case ALLEGRO_KEY_S:
+			action = GAME_EXEC_USER_ACTION_DOWN_KEYUP;
+			break;
+		case ALLEGRO_KEY_LEFT:
+		case ALLEGRO_KEY_A:
+			action = GAME_EXEC_USER_ACTION_LEFT_KEYUP;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+		case ALLEGRO_KEY_D:
+			action = GAME_EXEC_USER_ACTION_RIGHT_KEYUP;
+			break;
 		default:
 			break;
 		}
@@ -293,6 +309,7 @@ static void handle_event_key_up(int keycode) {
 static void handle_event_key_down(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
 	
+
 	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
 		break;
@@ -301,19 +318,19 @@ static void handle_event_key_down(int keycode) {
 		switch (keycode) {
 		case ALLEGRO_KEY_DOWN:
 		case ALLEGRO_KEY_S:
-			action = GAME_EXEC_USER_ACTION_DOWN;
+			action = GAME_EXEC_USER_ACTION_DOWN_KEYDOWN;
 			break;
 		case ALLEGRO_KEY_UP:
 		case ALLEGRO_KEY_W:
-			action = GAME_EXEC_USER_ACTION_UP;
+			action = GAME_EXEC_USER_ACTION_UP_KEYDOWN;
 			break;
 		case ALLEGRO_KEY_LEFT:
 		case ALLEGRO_KEY_A:
-			action = GAME_EXEC_USER_ACTION_LEFT;
+			action = GAME_EXEC_USER_ACTION_LEFT_KEYDOWN;
 			break;
 		case ALLEGRO_KEY_RIGHT:
 		case ALLEGRO_KEY_D:
-			action = GAME_EXEC_USER_ACTION_RIGHT;
+			action = GAME_EXEC_USER_ACTION_RIGHT_KEYDOWN;
 			break;
 		case ALLEGRO_KEY_ESCAPE:
 		case ALLEGRO_KEY_P:

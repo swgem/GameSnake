@@ -40,8 +40,8 @@ int get_score() {
     return g_score;
 }
 
-int get_elapsed_time() {
-    return (int)(g_gametick * cfg_game_running_period() / 1000.0f);
+float get_elapsed_time() {
+    return (g_gametick * cfg_game_running_period() / 1000.0f);
 }
 
 void set_snake_direction(MOVEMENT_DIRECTION direction) {
