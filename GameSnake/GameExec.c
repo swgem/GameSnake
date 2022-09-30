@@ -79,10 +79,6 @@ APP_NAV_STATE handle_game_exec_timer() {
         set_snake_speed(GAME_SNAKE_SPEED);
     }
 
-    /* if (!g_up_key_down && !g_down_key_down && !g_left_key_down && !g_right_key_down) {
-        set_snake_speed(GAME_SNAKE_SPEED);
-    }*/
-
     if (!g_is_paused) {
         GAME_EVENT event = game_run();
         switch (event) {

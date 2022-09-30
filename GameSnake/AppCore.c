@@ -180,6 +180,7 @@ static void handle_event_timer() {
 		next_state = handle_game_exec_timer();
 		break;
 	case APP_NAV_STATE_GAME_OVER:
+		next_state = handle_game_over_timer();
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;

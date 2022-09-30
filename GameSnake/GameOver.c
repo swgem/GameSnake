@@ -7,6 +7,7 @@
 
 //// INTERNAL VARIABLE
 
+static int g_apptick; // count +1 every app running period
 static int g_final_score;
 static int g_elapsed_time;
 static GAME_OVER_MODE g_game_over_mode;
@@ -87,12 +88,36 @@ APP_NAV_STATE handle_game_over_event_save_record_input(GAME_OVER_USER_ACTION act
     switch (action) {
     case GAME_OVER_USER_ACTION_SELECT:
         if (g_name_size_curr > 0) {
+            g_name_buf[g_name_size_curr] = (char)0;
             insert_new_record(g_name_buf, g_final_score);
             next_state = APP_NAV_STATE_MENU;
         }
         break;
     default:
         break;
+    }
+
+    return next_state;
+}
+
+APP_NAV_STATE handle_game_over_timer() {
+    APP_NAV_STATE next_state = APP_NAV_STATE_GAME_OVER;
+
+    g_apptick++;
+    int count_refresh = ((int)((1.0f / APP_MAIN_TIMER_PERIOD) * RECORDS_NAME_INPUT_CURSOR_PERIOD) - 1);
+    if (count_refresh <= 0) {
+        count_refresh = 1;
+        log_msg("Cursor frequency too high to process", LOG_TYPE_ERROR);
+    }
+    if ((g_apptick % count_refresh) == 0) {
+        if (g_name_size_curr < RECORDS_NAME_MAX_SIZE) {
+            if (g_name_buf[g_name_size_curr] == (char)0 || g_name_buf[g_name_size_curr] == ' ') {
+                g_name_buf[g_name_size_curr] = '_';
+            }
+            else {
+                g_name_buf[g_name_size_curr] = ' ';
+            }
+        }
     }
 
     return next_state;
@@ -126,14 +151,17 @@ APP_NAV_STATE handle_game_over_event_keychar(char unichar) {
         if ((unichar >= 'A') && (unichar <= 'Z') && (g_name_size_curr < RECORDS_NAME_MAX_SIZE)) {
             g_name_buf[g_name_size_curr] = (char)unichar;
             g_name_size_curr++;
+            if (g_name_size_curr < RECORDS_NAME_MAX_SIZE) g_name_buf[g_name_size_curr] = ' ';
         }
         else if ((unichar >= 'a') && (unichar <= 'z') && (g_name_size_curr < RECORDS_NAME_MAX_SIZE)) {
             g_name_buf[g_name_size_curr] = (char)(unichar - 32);
             g_name_size_curr++;
+            if (g_name_size_curr < RECORDS_NAME_MAX_SIZE) g_name_buf[g_name_size_curr] = ' ';
         }
         else if ((unichar == '\b') && (g_name_size_curr > 0)) {
+            g_name_buf[g_name_size_curr] = (char)0; // Clear current last character (might be ' ' or '_')
             g_name_size_curr--;
-            g_name_buf[g_name_size_curr] = (char)0;
+            g_name_buf[g_name_size_curr] = ' ';
         }
     }
 

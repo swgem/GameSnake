@@ -11,7 +11,7 @@ void insert_new_record(char* name, int score) {
     if (!fopen_s(&file, RECORDS_FILENAME, "a+") && file) {
         char str_score[10];
         sprintf_s(str_score, sizeof(str_score), "%d", score);
-        fprintf_s(file, "%s\t\t%s\n", name, str_score);
+        fprintf_s(file, "%s\ %s\n", name, str_score);
         fclose(file);
     }
     else {

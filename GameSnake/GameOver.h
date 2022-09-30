@@ -22,6 +22,7 @@ typedef enum {
 //// EXTERNAL FUNCTION DECLARATION
 
 void reset_game_over();
+APP_NAV_STATE handle_game_over_timer();
 APP_NAV_STATE handle_game_over_event(GAME_OVER_USER_ACTION action);
 APP_NAV_STATE handle_game_over_event_keychar(char unichar);
 void set_game_over_params(int final_score, int elapsed_time);
