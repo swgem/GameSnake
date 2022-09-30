@@ -16,9 +16,11 @@ static ALLEGRO_DISPLAY* g_display = NULL;
 
 ALLEGRO_FONT* g_font_r24 = NULL;
 ALLEGRO_FONT* g_font_r36 = NULL;
+ALLEGRO_FONT* g_font_b36 = NULL;
+ALLEGRO_FONT* g_font_b42 = NULL;
 ALLEGRO_FONT* g_font_r64 = NULL;
-ALLEGRO_FONT* g_font_b72 = NULL;
 ALLEGRO_FONT* g_font_b64 = NULL;
+ALLEGRO_FONT* g_font_b72 = NULL;
 
 //// FUNCTION IMPLEMENTATION
 
@@ -34,6 +36,12 @@ void init_graphical_resources() {
 
 	g_font_r36 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 36, 0);
 	if (g_font_r36 == NULL) SYSTEM_FATAL("Could not initialize text font");
+
+	g_font_b36 = al_load_ttf_font("res/Inconsolata-Bold.ttf", 36, 0);
+	if (g_font_b36 == NULL) SYSTEM_FATAL("Could not initialize text font");
+
+	g_font_b42 = al_load_ttf_font("res/Inconsolata-Bold.ttf", 42, 0);
+	if (g_font_b42 == NULL) SYSTEM_FATAL("Could not initialize text font");
 
 	g_font_r64 = al_load_ttf_font("res/Inconsolata-Regular.ttf", 64, 0);
 	if (g_font_r64 == NULL) SYSTEM_FATAL("Could not initialize text font");
@@ -231,6 +239,7 @@ void draw_game_exec() {
 void draw_game_over() {
 	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+	ALLEGRO_COLOR text_highlight_color = al_color_html(APP_TEXT_HIGHLIGHT_COLOR);
 
 	// Draw background
 	al_clear_to_color(bg_color);
@@ -240,8 +249,53 @@ void draw_game_over() {
 	int str_score_txt_size = strlen(get_app_text(APP_TEXT_ID_FINAL_SCORE)) + sizeof(str_score);
 	char* str_score_txt = (char*)malloc(str_score_txt_size);
 	sprintf_s(str_score, sizeof(str_score), "%d", get_final_score());
-	sprintf_s(str_score_txt, str_score_txt_size, "%s%s",
-		get_app_text(APP_TEXT_ID_FINAL_SCORE), str_score);
+	if (str_score_txt) {
+		sprintf_s(str_score_txt, str_score_txt_size, "%s%s",
+			get_app_text(APP_TEXT_ID_FINAL_SCORE), str_score);
+	}
+	else {
+		log_msg("Could not convert final score number to string", LOG_TYPE_ERROR);
+	}
+
+	switch (get_game_over_mode()) {
+	case GAME_OVER_MODE_DISPLAY_ONLY:
+		break;
+	case GAME_OVER_MODE_SAVE_RECORD_QUESTION:
+		al_draw_text(g_font_b42, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_CONGRATS_NEW_RECORD));
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2 + 80),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_SAVE_RECORD_QUESTION));
+
+		// Draw selection rectangle behind yes or no
+		if (get_save_record_state()) {
+			int w = al_get_text_width(g_font_r36, get_app_text(APP_TEXT_ID_YES));
+			al_draw_filled_rectangle((DISPLAY_RESOLUTION_X / 2 - 75) - (w / 2), (DISPLAY_RESOLUTION_Y / 2 + 120),
+				(DISPLAY_RESOLUTION_X / 2 - 75) + (w / 2), (DISPLAY_RESOLUTION_Y / 2 + 120) + 36, text_highlight_color);
+		}
+		else {
+			int w = al_get_text_width(g_font_r36, get_app_text(APP_TEXT_ID_NO));
+			al_draw_filled_rectangle((DISPLAY_RESOLUTION_X / 2 + 75) - (w / 2), (DISPLAY_RESOLUTION_Y / 2 + 120),
+				(DISPLAY_RESOLUTION_X / 2 + 75) + (w / 2), (DISPLAY_RESOLUTION_Y / 2 + 120) + 36, text_highlight_color);
+		}
+		
+
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2 - 75), (DISPLAY_RESOLUTION_Y / 2 + 120),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_YES));
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2 + 75), (DISPLAY_RESOLUTION_Y / 2 + 120),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_NO));
+		break;
+	case GAME_OVER_MODE_SAVE_RECORD_INPUT:
+		al_draw_text(g_font_b42, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_CONGRATS_NEW_RECORD));
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2 + 80),
+			ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_TYPE_NAME));
+		al_draw_text(g_font_b36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2 + 120),
+			ALLEGRO_ALIGN_CENTRE, get_new_record_name());
+		break;
+	default:
+		log_msg("Invalid game over mode", LOG_TYPE_ERROR);
+		break;
+	}
 
 	al_draw_text(g_font_r64, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 3) - 50, ALLEGRO_ALIGN_CENTRE, str_score_txt);
 }

@@ -29,6 +29,7 @@ static void handle_event_timer();
 static void handle_event_frame_rate();
 static void handle_event_key_up(int keycode);
 static void handle_event_key_down(int keycode);
+static void handle_event_key_char(int unichar);
 
 //// FUNCTION IMPLEMENTATION
 
@@ -95,10 +96,11 @@ void app_loop() {
 		case ALLEGRO_EVENT_KEY_DOWN:
 			handle_event_key_down(event.keyboard.keycode);
 			break;
-		case ALLEGRO_EVENT_KEY_CHAR:
-			break;
 		case ALLEGRO_EVENT_KEY_UP:
 			handle_event_key_up(event.keyboard.keycode);
+			break;
+		case ALLEGRO_EVENT_KEY_CHAR:
+			handle_event_key_char(event.keyboard.unichar);
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			finished = true;
@@ -284,7 +286,15 @@ static void handle_event_key_up(int keycode) {
 		case ALLEGRO_KEY_ENTER:
 		case ALLEGRO_KEY_PAD_ENTER:
 		case ALLEGRO_KEY_SPACE:
-			action = GAME_OVER_USER_ACTION_EXIT;
+			action = GAME_OVER_USER_ACTION_SELECT;
+			break;
+		case ALLEGRO_KEY_LEFT:
+		case ALLEGRO_KEY_Y:
+			action = GAME_OVER_USER_ACTION_SAVE_RECORD_YES;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+		case ALLEGRO_KEY_N:
+			action = GAME_OVER_USER_ACTION_SAVE_RECORD_NO;
 			break;
 		default:
 			break;
@@ -308,7 +318,6 @@ static void handle_event_key_up(int keycode) {
 
 static void handle_event_key_down(int keycode) {
 	APP_NAV_STATE next_state = g_curr_nav_state;
-	
 
 	switch (g_curr_nav_state) {
 	case APP_NAV_STATE_MENU:
@@ -349,6 +358,31 @@ static void handle_event_key_down(int keycode) {
 		break;
 	}
 	case APP_NAV_STATE_GAME_OVER:
+		break;
+	case APP_NAV_STATE_RECORDS:
+		break;
+	case APP_NAV_STATE_SETTINGS:
+		break;
+	case APP_NAV_STATE_FINISH:
+		break;
+	default:
+		SYSTEM_FATAL("Invalid current navigation state!");
+		break;
+	}
+
+	if (next_state != g_curr_nav_state) change_nav_state(next_state);
+}
+
+static void handle_event_key_char(int unichar) {
+	APP_NAV_STATE next_state = g_curr_nav_state;
+
+	switch (g_curr_nav_state) {
+	case APP_NAV_STATE_MENU:
+		break;
+	case APP_NAV_STATE_GAME_EXEC:
+		break;
+	case APP_NAV_STATE_GAME_OVER:
+		handle_game_over_event_keychar(unichar);
 		break;
 	case APP_NAV_STATE_RECORDS:
 		break;

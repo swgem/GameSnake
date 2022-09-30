@@ -9,7 +9,12 @@ static const char* g_app_text_array[] = {
     "RECORDS",
     "SETTINGS",
     "EXIT",
-    "FINAL SCORE: "
+    "FINAL SCORE: ",
+    "CONGRATULATIONS, NEW RECORD!",
+    "WOULD YOU LIKE TO SAVE IT?",
+    "YES",
+    "NO",
+    "TYPE YOUR NAME BELOW:"
 };
 
 //// FUNCTION IMPLEMENTATION
