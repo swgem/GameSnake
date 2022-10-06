@@ -24,7 +24,12 @@ APP_NAV_STATE handle_game_over_event_save_record_input(GAME_OVER_USER_ACTION act
 //// FUNCTION IMPLEMENTATION
 
 void reset_game_over() {
-    play_death_audio();
+    if (!is_game_won()) {
+        play_death_audio();
+    }
+    else {
+        play_win_audio();
+    }
 
     g_save_record_state = true;
 
