@@ -41,6 +41,9 @@ void reset_game_over() {
     else {
         g_game_over_mode = GAME_OVER_MODE_DISPLAY_ONLY;
     }
+    if (is_game_won()) {
+        g_game_over_mode = GAME_OVER_MODE_WON;
+    }
 }
 
 APP_NAV_STATE handle_game_over_event_display_only(GAME_OVER_USER_ACTION action) {
@@ -136,6 +139,11 @@ APP_NAV_STATE handle_game_over_event(GAME_OVER_USER_ACTION action) {
     case GAME_OVER_MODE_SAVE_RECORD_INPUT:
         next_state = handle_game_over_event_save_record_input(action);
         break;
+    case GAME_OVER_MODE_WON:
+        if (action == GAME_OVER_USER_ACTION_SELECT) {
+            g_game_over_mode = GAME_OVER_MODE_SAVE_RECORD_QUESTION;
+        }
+        break;
     default:
         log_msg("Invalid game over mode", LOG_TYPE_ERROR);
         break;
@@ -146,8 +154,8 @@ APP_NAV_STATE handle_game_over_event(GAME_OVER_USER_ACTION action) {
 
 APP_NAV_STATE handle_game_over_event_keychar(char unichar) {
     APP_NAV_STATE next_state = APP_NAV_STATE_GAME_OVER;
-
-    if (g_game_over_mode == GAME_OVER_MODE_SAVE_RECORD_INPUT) {
+    switch (g_game_over_mode){
+    case  GAME_OVER_MODE_SAVE_RECORD_INPUT:
         if ((unichar >= 'A') && (unichar <= 'Z') && (g_name_size_curr < RECORDS_NAME_MAX_SIZE)) {
             g_name_buf[g_name_size_curr] = (char)unichar;
             g_name_size_curr++;
@@ -163,7 +171,11 @@ APP_NAV_STATE handle_game_over_event_keychar(char unichar) {
             g_name_size_curr--;
             g_name_buf[g_name_size_curr] = ' ';
         }
+        break;
+    default:
+        break;
     }
+    
 
     return next_state;
 }
