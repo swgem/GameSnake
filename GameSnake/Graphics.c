@@ -308,6 +308,13 @@ void draw_settings() {
 	al_clear_to_color(bg_color);
 }
 
+void draw_records() {
+	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+
+	// Draw background
+	al_clear_to_color(bg_color);
+}
+
 MENU_OPTION get_option_in_click_point(int x, int y) {
 
 }

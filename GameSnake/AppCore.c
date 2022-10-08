@@ -11,6 +11,7 @@
 #include "Audio.h"
 #include "GameConfig.h"
 #include "Tools.h"
+#include "Records.h"
 
 //// INTERNAL VARIABLE
 
@@ -133,6 +134,7 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 		finish_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
+		finish_records();
 		break;
 	case APP_NAV_STATE_SETTINGS:
 		break;
@@ -156,6 +158,7 @@ static void change_nav_state(APP_NAV_STATE next_state) {
 		reset_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
+		reset_records();
 		break;
 	case APP_NAV_STATE_SETTINGS:
 		break;
@@ -210,6 +213,7 @@ static void handle_event_frame_rate() {
 		draw_game_over();
 		break;
 	case APP_NAV_STATE_RECORDS:
+		draw_records();
 		break;
 	case APP_NAV_STATE_SETTINGS:
 		draw_settings();
@@ -303,8 +307,20 @@ static void handle_event_key_up(int keycode) {
 		next_state = handle_game_over_event(action);
 		break;
 	}
-	case APP_NAV_STATE_RECORDS:
+	case APP_NAV_STATE_RECORDS: {
+		RECORDS_USER_ACTION action = RECORDS_USER_ACTION_NONE;
+		switch (keycode) {
+		case ALLEGRO_KEY_ENTER:
+		case ALLEGRO_KEY_PAD_ENTER:
+		case ALLEGRO_KEY_SPACE:
+			action = RERCODS_USER_ACTION_LEAVE;
+			break;
+		default:
+			break;
+		}
+		next_state = handle_records_event(action);
 		break;
+	}
 	case APP_NAV_STATE_SETTINGS:
 		break;
 	case APP_NAV_STATE_FINISH:

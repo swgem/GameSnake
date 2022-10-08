@@ -48,6 +48,9 @@
     <ClCompile Include="RecordsController.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Records.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RecordsController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Records.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
