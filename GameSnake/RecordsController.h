@@ -12,7 +12,7 @@ typedef struct {
 
 //// EXTERNAL FUNCTION DECLARATION
 
-void insert_new_record(RECORD_UNIT new_record);
-RECORD_UNIT get_last_record();
+void insert_new_record(RECORD_UNIT* new_record);
+void get_last_record(RECORD_UNIT* last_record_out);
 
 #endif

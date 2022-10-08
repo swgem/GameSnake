@@ -38,7 +38,8 @@ void reset_game_over() {
         g_name_buf[i] = (char)0;
     }
 
-    RECORD_UNIT last_record = get_last_record();
+    RECORD_UNIT last_record;
+    get_last_record(&last_record);
     if (g_final_score > last_record.score) {
         g_game_over_mode = GAME_OVER_MODE_SAVE_RECORD_QUESTION;
     }
@@ -96,8 +97,10 @@ APP_NAV_STATE handle_game_over_event_save_record_input(GAME_OVER_USER_ACTION act
     case GAME_OVER_USER_ACTION_SELECT:
         if (g_name_size_curr > 0) {
             g_name_buf[g_name_size_curr] = (char)0;
-            RECORD_UNIT record = {g_name_buf, g_final_score};
-            insert_new_record(record);
+            RECORD_UNIT record;
+            sprintf_s(&record.name, RECORDS_NAME_MAX_SIZE, "%s", g_name_buf);
+            record.score = g_final_score;
+            insert_new_record(&record);
             next_state = APP_NAV_STATE_MENU;
         }
         break;
