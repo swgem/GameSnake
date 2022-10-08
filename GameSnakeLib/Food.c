@@ -36,8 +36,10 @@ int check_collision_snake_food(SNAKE* snake, FOOD* food) {
 }
 
 void refresh_food_position(FOOD* food, SNAKE* snake, int x_lim, int y_lim) {
-	change_food_position(food, x_lim, y_lim);
-	while (check_collision_snake_food(snake, food)) {
+	if (snake->length < ((x_lim + 1) * (y_lim + 1))) {
 		change_food_position(food, x_lim, y_lim);
+		while (check_collision_snake_food(snake, food)) {
+			change_food_position(food, x_lim, y_lim);
+		}
 	}
 }

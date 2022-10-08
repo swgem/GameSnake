@@ -14,12 +14,17 @@ static bool g_right_key_down = false;
 static bool g_any_key_down = false;
 static bool g_is_paused = false;
 static float g_time_to_speed = 0;
+static bool g_won_game = false;
 
 //// INTERNAL FUNCTION DECLARATION
 
 static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake);
 
 //// FUNCTION IMPLEMENTATION
+
+bool is_game_won() {
+    return g_won_game;
+}
 
 static MOVEMENT_DIRECTION actual_curr_snake_direction(const SNAKE* snake) {
     MOVEMENT_DIRECTION ret = snake->direction;
@@ -55,6 +60,13 @@ bool is_game_paused() {
 void reset_game_exec() {
     play_game_exec_audio();
     game_restart();
+    g_won_game = false;
+    g_up_key_down = false;
+    g_down_key_down = false;
+    g_left_key_down = false;
+    g_right_key_down = false;
+    g_any_key_down = false;
+    g_is_paused = false;
 }
 
 void finish_game_exec() {
@@ -96,6 +108,11 @@ APP_NAV_STATE handle_game_exec_timer() {
             log_msg("Invalid game event", LOG_TYPE_ERROR);
             break;
         }
+    }
+
+    if ((GAME_MAP_SIZE_X * GAME_MAP_SIZE_Y) == get_snake()->length) {
+        next_state = APP_NAV_STATE_GAME_OVER;
+        g_won_game = true;
     }
 
     return next_state;

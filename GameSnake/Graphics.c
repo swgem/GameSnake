@@ -292,6 +292,9 @@ void draw_game_over() {
 		al_draw_text(g_font_b36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2 + 120),
 			ALLEGRO_ALIGN_CENTRE, get_new_record_name());
 		break;
+	case GAME_OVER_MODE_WON: 
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 2), (DISPLAY_RESOLUTION_Y / 2),
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_GAME_OVER_WON));
 	default:
 		log_msg("Invalid game over mode", LOG_TYPE_ERROR);
 		break;

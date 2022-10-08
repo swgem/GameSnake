@@ -14,7 +14,8 @@ static const char* g_app_text_array[] = {
     "WOULD YOU LIKE TO SAVE IT?",
     "YES",
     "NO",
-    "TYPE YOUR NAME BELOW:"
+    "TYPE YOUR NAME BELOW:",
+    "CONGRATULATIONS, YOU WON!!!!"
 };
 
 //// FUNCTION IMPLEMENTATION

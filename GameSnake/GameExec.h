@@ -28,7 +28,7 @@ typedef enum {
 bool is_game_paused();
 void reset_game_exec();
 void finish_game_exec();
-
+bool is_game_won();
 APP_NAV_STATE handle_game_exec_timer();
 APP_NAV_STATE handle_game_exec_event(GAME_EXEC_USER_ACTION action);
 

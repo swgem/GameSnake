@@ -23,7 +23,12 @@ static ALLEGRO_SAMPLE_ID g_death_id;
 
 static ALLEGRO_SAMPLE* g_paused_sample = NULL;
 static ALLEGRO_SAMPLE_ID g_paused_id;
+
+static ALLEGRO_SAMPLE* g_win_sample = NULL;
+static ALLEGRO_SAMPLE_ID g_win_id;
+
 //// FUNCTION IMPLEMENTATION
+
 
 void init_audio() {
 	audio_initialized = true;
@@ -36,7 +41,7 @@ void init_audio() {
 		audio_initialized = false;
 	}
 
-	al_reserve_samples(4);
+	al_reserve_samples(5);
 	g_menu_sample = al_load_sample("res/OST_MENU.ogg");
 	if (g_menu_sample == NULL) log_msg("Could not load menu audio.", LOG_TYPE_ERROR);
 	g_game_sample = al_load_sample("res/OST_GAME.ogg");
@@ -46,8 +51,9 @@ void init_audio() {
 	g_death_sample = al_load_sample("res/OST_DEATH.ogg");
 	if (g_death_sample == NULL) log_msg("Could not load death audio.", LOG_TYPE_ERROR);
 	g_paused_sample = al_load_sample("res/OST_PAUSED.ogg");
-	if (g_paused_sample == NULL) log_msg("Could not load food audio.", LOG_TYPE_ERROR);
-
+	if (g_paused_sample == NULL) log_msg("Could not load pause audio.", LOG_TYPE_ERROR);
+	g_win_sample = al_load_sample("res/OST_WIN.ogg");
+	if (g_win_sample == NULL) log_msg("Could not load win audio.", LOG_TYPE_ERROR);
 }
 
 void play_menu_audio() {
@@ -102,6 +108,17 @@ void play_death_audio() {
 	}
 	else {
 		log_msg("Cannot play death audio.", LOG_TYPE_ERROR);
+	}
+}
+
+void play_win_audio() {
+	if (audio_initialized && g_win_sample != NULL) {
+		if (!al_play_sample(g_win_sample, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, &g_win_id)) {
+			log_msg("Tried but could not play win audio.", LOG_TYPE_ERROR);
+		}
+	}
+	else {
+		log_msg("Cannot play win audio.", LOG_TYPE_ERROR);
 	}
 }
 
