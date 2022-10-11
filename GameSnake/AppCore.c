@@ -315,6 +315,12 @@ static void handle_event_key_up(int keycode) {
 		case ALLEGRO_KEY_SPACE:
 			action = RECORDS_USER_ACTION_LEAVE;
 			break;
+		case ALLEGRO_KEY_UP:
+			action = RECORDS_USER_ACTION_UP;
+			break;
+		case ALLEGRO_KEY_DOWN:
+			action = RECORDS_USER_ACTION_DOWN;
+			break;
 		default:
 			break;
 		}

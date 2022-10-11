@@ -322,7 +322,7 @@ void draw_records() {
 	// Print records
 	RECORD_UNIT* records = NULL;
 	int number_of_records;
-	get_records(&records, &number_of_records);
+	get_records_to_print(&records, &number_of_records);
 
 	for (int i = 0; i < number_of_records; i++) {
 		RECORD_UNIT* record = &records[i];
