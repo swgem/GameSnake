@@ -4,6 +4,7 @@
 #include "AppText.h"
 #include "GameExec.h"
 #include "GameOver.h"
+#include "Records.h"
 #include "allegro5/allegro_color.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
@@ -313,9 +314,23 @@ void draw_settings() {
 
 void draw_records() {
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
 
 	// Draw background
 	al_clear_to_color(bg_color);
+
+	// Print records
+	RECORD_UNIT* records = NULL;
+	int number_of_records;
+	get_records(&records, &number_of_records);
+
+	for (int i = 0; i < number_of_records; i++) {
+		RECORD_UNIT* record = &records[i];
+		char* str_score[10];
+		sprintf_s(str_score, sizeof(str_score), "%d", record->score);
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 4) + 20, 140 + i * 46, ALLEGRO_ALIGN_CENTRE, records[i].name);
+		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X * 3/4) - 20, 140 + i * 46, ALLEGRO_ALIGN_CENTRE, str_score);
+	}
 }
 
 MENU_OPTION get_option_in_click_point(int x, int y) {

@@ -14,5 +14,7 @@ typedef struct {
 
 void insert_new_record(RECORD_UNIT* new_record);
 void get_last_record(RECORD_UNIT* last_record_out);
+void get_records_buf(RECORD_UNIT** records_out, int* number_of_records_out);
+void clear_records_buf();
 
 #endif
