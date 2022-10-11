@@ -11,5 +11,6 @@ void play_death_audio();
 void reset_audio();
 void finish_audio();
 void play_pause_audio();
+void play_win_audio();
 
 #endif

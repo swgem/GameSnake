@@ -313,7 +313,7 @@ static void handle_event_key_up(int keycode) {
 		case ALLEGRO_KEY_ENTER:
 		case ALLEGRO_KEY_PAD_ENTER:
 		case ALLEGRO_KEY_SPACE:
-			action = RERCODS_USER_ACTION_LEAVE;
+			action = RECORDS_USER_ACTION_LEAVE;
 			break;
 		default:
 			break;
