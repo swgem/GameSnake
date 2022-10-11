@@ -76,6 +76,15 @@ void get_records_buf(RECORD_UNIT** records_out, int* number_of_records_out) {
         log_msg("Could not open records file to read last record", LOG_TYPE_ERROR);
     }
 
+    if (g_number_of_records > 0) {
+        // Swap first and last elements to first show the highest score
+        for (int i = 0; i < (g_number_of_records / 2); i++) {
+            RECORD_UNIT b = g_records_buf[i];
+            g_records_buf[i] = g_records_buf[g_number_of_records - i - 1];
+            g_records_buf[g_number_of_records - i - 1] = b;
+        }
+    }
+
     *records_out = g_records_buf;
     *number_of_records_out = g_number_of_records;
 }
