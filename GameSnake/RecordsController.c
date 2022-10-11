@@ -84,4 +84,5 @@ void clear_records_buf() {
     free(g_records_buf);
     g_records_buf_size = 0;
     g_number_of_records = 0;
+    g_records_buf = NULL;
 }
