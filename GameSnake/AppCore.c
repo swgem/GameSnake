@@ -50,6 +50,7 @@ void app_init() {
 	if (g_ev_queue == NULL) SYSTEM_FATAL("Could not initialize event queue");
 
 	init_graphical_resources();
+	print_splash_screen();
 	init_audio();
 
 	al_register_event_source(g_ev_queue, al_get_keyboard_event_source());

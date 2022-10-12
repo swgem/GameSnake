@@ -6,11 +6,11 @@
 
 //// EXTERNAL FUNCTION DECLARATION
 
+void print_splash_screen();
 void init_graphical_resources();
 
 const ALLEGRO_DISPLAY* get_display();
 void destroy_display();
-
 void draw_menu();
 void draw_game_exec();
 void draw_game_over();
