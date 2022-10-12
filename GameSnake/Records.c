@@ -55,6 +55,14 @@ void get_records_to_print(RECORD_UNIT** records_out, int* number_of_records_out)
     }  
 }
 
+bool is_record_key_up_active() {
+    return (g_record_cursor > 0);
+}
+
+bool is_record_key_down_active() {
+    return (g_record_cursor < g_record_cursor_max);
+}
+
 void finish_records() {
     g_records = NULL;
     g_number_of_records = 0;

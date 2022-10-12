@@ -29,6 +29,8 @@
 //#define APP_SNAKE_COLOR "#008000"
 #define APP_SNAKE_HEAD_COLOR "#8a2be2"
 #define APP_FOOD_COLOR "#0000ff"
+#define APP_RECORD_LIST_TEXT_COLOR "#ffffff"
+#define APP_RECORD_ARROW_COLOR "#ffffff"
 
 //// GAME DEFINITION
 

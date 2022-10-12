@@ -314,22 +314,68 @@ void draw_settings() {
 
 void draw_records() {
 	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
-	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
+	ALLEGRO_COLOR list_bg_color = al_color_html(APP_LIST_BG_COLOR);
+	ALLEGRO_COLOR record_text_color = al_color_html(APP_RECORD_LIST_TEXT_COLOR);
+	ALLEGRO_COLOR arrow_color = al_color_html(APP_RECORD_ARROW_COLOR);
 
 	// Draw background
 	al_clear_to_color(bg_color);
+
+	// Draw header
+	int header_h = 150;
+	al_draw_text(g_font_b64, record_text_color, DISPLAY_RESOLUTION_X / 2, 40, 
+		ALLEGRO_ALIGN_CENTRE, get_app_text(APP_TEXT_ID_RECORDS));
 
 	// Print records
 	RECORD_UNIT* records = NULL;
 	int number_of_records;
 	get_records_to_print(&records, &number_of_records);
 
+	int table_col_w = (DISPLAY_RESOLUTION_X / 2) - 110;
+	int table_x0 = (DISPLAY_RESOLUTION_X / 2) - table_col_w;
+	int table_row_h = 46;
+	int table_y0 = header_h + 10;
+	int table_h = table_row_h * number_of_records;
+	int highlight_padding = 5;
+
 	for (int i = 0; i < number_of_records; i++) {
 		RECORD_UNIT* record = &records[i];
 		char* str_score[10];
 		sprintf_s(str_score, sizeof(str_score), "%d", record->score);
-		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X / 4) + 20, 140 + i * 46, ALLEGRO_ALIGN_CENTRE, records[i].name);
-		al_draw_text(g_font_r36, text_color, (DISPLAY_RESOLUTION_X * 3/4) - 20, 140 + i * 46, ALLEGRO_ALIGN_CENTRE, str_score);
+		al_draw_filled_rectangle(table_x0 + highlight_padding, (table_y0 + i * table_row_h),
+			(table_x0 + 2*table_col_w) - highlight_padding, (table_y0 + (i+1) * table_row_h) - 2*highlight_padding, list_bg_color);
+		al_draw_text(g_font_r36, record_text_color, table_x0 + table_col_w/2, (table_y0 + i * table_row_h),
+			ALLEGRO_ALIGN_CENTRE, records[i].name);
+		al_draw_text(g_font_r36, record_text_color, table_x0 + 3*table_col_w/2, (table_y0 + i * table_row_h),
+			ALLEGRO_ALIGN_CENTRE, str_score);
+	}
+
+	// Draw arrows
+	int thickness = 3;
+
+	int key_up_x1 = table_x0 / 2;
+	int key_up_y1 = (table_y0 + 8);
+	int key_up_x2 = table_x0 / 2 - 20;
+	int key_up_y2 = (table_y0 + 8) + 30;
+	int key_up_x3 = table_x0 / 2 + 20;
+	int key_up_y3 = (table_y0 + 8) + 30;
+	if (is_record_key_up_active()) {
+		al_draw_filled_triangle(key_up_x1, key_up_y1, key_up_x2, key_up_y2, key_up_x3, key_up_y3, arrow_color);
+	}
+	else {
+		al_draw_triangle(key_up_x1, key_up_y1, key_up_x2, key_up_y2, key_up_x3, key_up_y3, arrow_color, thickness);
+	}
+	int key_down_x1 = table_x0 / 2;
+	int key_down_y1 = (table_y0 + table_h - 8);
+	int key_down_x2 = table_x0 / 2 - 20;
+	int key_down_y2 = (table_y0 + table_h - 8) - 30;
+	int key_down_x3 = table_x0 / 2 + 20;
+	int key_down_y3 = (table_h + table_y0 - 8) - 30;
+	if (is_record_key_down_active()) {
+		al_draw_filled_triangle(key_down_x1, key_down_y1, key_down_x2, key_down_y2, key_down_x3, key_down_y3, arrow_color);
+	}
+	else {
+		al_draw_triangle(key_down_x1, key_down_y1, key_down_x2, key_down_y2, key_down_x3, key_down_y3, arrow_color, thickness);
 	}
 }
 
