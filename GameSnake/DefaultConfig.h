@@ -2,6 +2,7 @@
 #define DEFAULT_CONFIG_H
 
 #include "AppNav.h"
+#include "Snake.h"
 
 //// APP DEFINITION
 
@@ -17,6 +18,7 @@
 #define APP_BG_COLOR "#c9c72c"
 #define APP_TEXT_COLOR "#737119"
 #define APP_TEXT_HIGHLIGHT_COLOR "#ffffff"
+#define APP_LIST_BG_COLOR "#807E1C"
 #define APP_HEADER_TEXT_COLOR "#ffffff"
 #define APP_PAUSED_TEXT_COLOR "#ff0000"
 #define APP_MAP_LINE_COLOR "#ffffff"
@@ -47,6 +49,8 @@
 #define RECORDS_FILENAME "records.txt"
 #define RECORDS_NAME_MAX_SIZE 10
 #define RECORDS_NAME_INPUT_CURSOR_PERIOD 0.6f
+
+#define MAX_RECORDS_TO_PRINT 6
 
 //// LOGGER DEFINITION
 
