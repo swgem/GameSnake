@@ -25,19 +25,6 @@ ALLEGRO_FONT* g_font_b72 = NULL;
 
 //// FUNCTION IMPLEMENTATION
 
-void print_splash_screen() {
-		ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
-		ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
-
-		// Draw background
-		al_clear_to_color(bg_color);
-		// Draw loading
-		al_draw_text(g_font_b64, text_color, 20, 400,
-			ALLEGRO_ALIGN_LEFT, "LOADING...");
-
-		al_flip_display();
-	}
-
 void init_graphical_resources() {
 	// Loading system fonts
 	if (!al_init_font_addon()) SYSTEM_FATAL("Could not initiate font addon!");
@@ -79,6 +66,19 @@ const ALLEGRO_DISPLAY* get_display() {
 
 void destroy_display() {
 	al_destroy_display(g_display);
+}
+
+void draw_splash_screen() {
+	ALLEGRO_COLOR bg_color = al_color_html(APP_BG_COLOR);
+	ALLEGRO_COLOR text_color = al_color_html(APP_TEXT_COLOR);
+
+	// Draw background
+	al_clear_to_color(bg_color);
+	// Draw loading
+	al_draw_text(g_font_b64, text_color, 20, 400,
+		ALLEGRO_ALIGN_LEFT, get_app_text(APP_TEXT_ID_LOADING));
+
+	al_flip_display();
 }
 
 void draw_menu() {
